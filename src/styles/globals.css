@@ -3,6 +3,14 @@
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono',
     'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --primary-text: #0b2e48;
+  --secondary-text: #ffc93c;
+  --secondart-text-dark: #efac00;
+  --white-text: #ffffff;
+  --black-text: #000000;
+  --bg-primary: #0081c9;
+  --bg-secondary: #5bc0f8;
+  --bg-tertiary: #86e5ff;
 }
 
 *,
