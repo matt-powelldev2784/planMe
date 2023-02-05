@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavBar } from './NavBar'
 import { TitleCard } from './TitleCard'
-import { Login } from '@/pages/api/auth/Login/Login'
 
 export const HomePage = () => {
   return (
@@ -10,7 +9,6 @@ export const HomePage = () => {
       <NavBar />
       <LeftSectionFlexboxStyled>
         <TitleCard />
-        {/* <Login /> */}
       </LeftSectionFlexboxStyled>
       <RightSectionFlexboxStyled></RightSectionFlexboxStyled>
       <ImgStyled src="./homepage_hero_lake_v3.jpg" />
