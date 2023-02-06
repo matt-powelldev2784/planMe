@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { useSession, signIn, signOut } from 'next-auth/react'
 
 export const NavBar = () => {
+  const loginHandler = () => signIn()
+
   return (
     <NavFlexBoxStyled>
       <LinksFlexBoxStyled>
-        <LinkStyled onClick={() => signIn()}>Log In</LinkStyled>
+        <LinkStyled onClick={loginHandler}>Log In</LinkStyled>
         <LinkStyled>Sign Up</LinkStyled>
       </LinksFlexBoxStyled>
     </NavFlexBoxStyled>
@@ -22,8 +24,8 @@ const NavFlexBoxStyled = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: 1;
   min-width: 300px;
+  z-index: 2;
   @media only screen and (max-width: 992px) {
     justify-content: center;
   }
