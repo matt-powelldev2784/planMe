@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSession, signIn, signOut } from 'next-auth/react'
 
 export const NavBar = () => {
   return (
     <NavFlexBoxStyled>
       <LinksFlexBoxStyled>
-        <LinkStyled onClick={() => signIn()}>Log In</LinkStyled>
+        <LinkStyled>Log In</LinkStyled>
         <LinkStyled>Sign Up</LinkStyled>
       </LinksFlexBoxStyled>
     </NavFlexBoxStyled>
@@ -42,5 +41,4 @@ const LinkStyled = styled.a`
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--primary-text);
-  cursor: pointer;
 `
