@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import Image from 'next/image'
+import clockSvg from 'public/clock.svg'
+import PhoneSvg from 'public/phone.svg'
+import PlusSvg from 'public/plus_yellow.svg'
 
 export const HomeCard = () => {
   return (
     <HomeCardConatiner>
       <IconsFlexbox>
-        <IconStyled src="./clock.svg" />
-        <IconStyled src="./phone.svg" />
-        <IconStyled src="./plus.svg" />
+        <Image src={clockSvg} alt="Clock Icon" />
+        <Image src={PhoneSvg} alt="Mobile Phone Icon" />
+        <Image src={PlusSvg} alt="Plus Symbol Icon" />
       </IconsFlexbox>
       <PStyled>Save time and get more done</PStyled>
       <PStyled>Manage and organise better</PStyled>
@@ -24,6 +28,8 @@ const IconsFlexbox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  padding: 1rem;
 `
 
 const IconStyled = styled.img`

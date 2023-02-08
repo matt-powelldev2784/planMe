@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Login from './auth/login'
+import SignIn from './auth/signin'
 
 export default function Home() {
   return (

@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 import { HomeCard } from './HomeCard'
+import Image from 'next/image'
+import PlanMeLogo from 'public/planMe_logoV2.svg'
 
 export const TitleCard = () => {
   return (
     <TitleCardFlexbox>
       <HomeTextContainer>
-        <PlanMeLogoImg src="./planMe_logov2.svg" alt="PlanMe Logo" />
+        <PlanMeLogoContainer>
+          <Image src={PlanMeLogo} fill alt="PlanMe Logo" />
+        </PlanMeLogoContainer>
         <HomePageH1>Schedule Jobs From Anywhere!</HomePageH1>
         <HomeCard />
       </HomeTextContainer>
@@ -20,6 +24,20 @@ const TitleCardFlexbox = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+const PlanMeLogoContainer = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 22rem;
+  height: 5rem;
+  min-width: 280px;
+  @media only screen and (max-width: 992px) {
+    width: clamp(18rem, 40vw, 40rem);
+  }
+  @media only screen and (max-width: 441px) {
+    width: clamp(15rem, 40vw, 40rem);
+  }
 `
 
 const PlanMeLogoImg = styled.img`
