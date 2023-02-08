@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { TitleCard } from '@/components/HomePage/TitleCard'
 
-export default function Home({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const LoginProviders =
     providers &&
     Object.values(providers).map((provider) => (
