@@ -119,46 +119,6 @@ const LeftSectionFlexboxStyled = styled.div`
   }
 `
 
-const TitleCardContainerStyled = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  padding: 3rem;
-  border-radius: 1rem;
-  min-width: 300px;
-  background: var(--bg-primary);
-  @media only screen and (max-width: 441px) {
-    padding: 3rem 0rem;
-    width: 90vw;
-  }
-`
-
-const HomePageH1 = styled.h1`
-  font-size: clamp(0.9rem, 8vw, 1.2rem);
-  font-weight: 700;
-  text-align: center;
-  color: #0e2850;
-  width: 80%;
-  min-width: 280px;
-`
-
-const PlanMeLogoContainer = styled.div`
-  position: relative;
-  overflow: hidden;
-  width: 26rem;
-  height: 7rem;
-  min-width: 280px;
-  @media only screen and (max-width: 992px) {
-    width: clamp(18rem, 40vw, 40rem);
-  }
-  @media only screen and (max-width: 441px) {
-    width: clamp(15rem, 40vw, 40rem);
-  }
-`
-
 const RightSectionFlexboxStyled = styled.div`
   position: absolute;
   right: 0;
