@@ -1,11 +1,11 @@
+import React from 'react'
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { getProviders, signIn } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]'
-import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { TitleCard } from '@/components/HomePage/TitleCard'
+import { TitleCard } from '@/components'
 
 export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const LoginProviders =
@@ -51,7 +51,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const providers = await getProviders()
-  console.log('providers', providers)
 
   return {
     props: { providers: Object.values(providers) ?? [] },

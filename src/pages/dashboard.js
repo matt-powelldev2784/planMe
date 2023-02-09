@@ -1,7 +1,5 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { Dashboard } from '@/components/Dashboard/_Dashboard/Dashboard'
-import { HomePage } from '@/components/HomePage/HomePage'
-import Index from './index'
+import { Dashboard } from '@/components'
 
 export default function DashboardPage() {
   const { data: session } = useSession()
