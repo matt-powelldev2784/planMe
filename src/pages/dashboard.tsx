@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { Dashboard } from '@/components'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Session } from 'next-auth/core/types'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
