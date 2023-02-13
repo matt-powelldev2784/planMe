@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 import { Dashboard } from '@/components'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import styled from 'styled-components'
+import Image from 'next/image'
+import LogoutIcon from '../../public/logout.svg'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -23,9 +26,40 @@ export default function DashboardPage() {
     return (
       <>
         <Dashboard />
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut({ callbackUrl: '/' })}>Sign out</button>
+        <SignOutContainerStyled>
+          <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
+            <Image src={LogoutIcon} width={30} height={30} alt="Lady in canoe on a lake" />
+            <PStyled>Sign Out</PStyled>
+          </ButtonStyled>
+        </SignOutContainerStyled>
       </>
     )
   }
 }
+
+const SignOutContainerStyled = styled.footer`
+  width: 100vw;
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+`
+
+const ButtonStyled = styled.button`
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const PStyled = styled.p`
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--primary-text);
+  margin: 1rem 0.5rem;
+  @media only screen and (max-width: 441px) {
+    font-size: 1rem;
+  }
+`
