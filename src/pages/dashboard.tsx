@@ -10,9 +10,6 @@ export default function DashboardPage() {
   const [routerCalled, setRouterCalled] = useState(false)
 
   useEffect(() => {
-    console.log('session', session)
-    console.log('status', status)
-
     const redirectIfNoSession = () => {
       if (status === 'unauthenticated') {
         router?.push('/')
