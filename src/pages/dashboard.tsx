@@ -23,6 +23,8 @@ export default function DashboardPage() {
   }, [session, router, routerCalled, status])
 
   if (session) {
+    console.log('session', session)
+
     return (
       <>
         <Dashboard />

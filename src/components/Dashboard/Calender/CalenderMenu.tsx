@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { DateInput } from '@/components/ui/DateInput'
-import putTest from '@/pages/api/putTest'
 
 export const CalenderMenu = () => {
   return (
