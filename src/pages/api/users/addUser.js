@@ -5,28 +5,29 @@ export default async function handler(req, res) {
 
   try {
     if (method === 'POST') {
-      const { email, firstName, lastName, password } = req.body
+      // const { email, firstName, lastName, password } = req.body
 
-      const userExists = await prisma.User.findUnique({
-        where: {
-          email,
-        },
-      })
+      // const userExists = await prisma.User.findUnique({
+      //   where: {
+      //     email,
+      //   },
+      // })
 
-      if (userExists) {
-        return res
-          .status(400)
-          .json({ success: false, status: 400, errors: [{ msg: 'User already exists.' }] })
-      }
+      // if (userExists) {
+      //   return res
+      //     .status(400)
+      //     .json({ success: false, status: 400, errors: [{ msg: 'User already exists.' }] })
+      // }
 
-      const user = await prisma.User.create({
-        data: { email, firstName, lastName, password },
-      })
+      // const user = await prisma.User.create({
+      //   data: { email, firstName, lastName, password },
+      // })
 
       res.status(201).json({
         success: true,
         status: 201,
-        user,
+        user: 'user',
+        // user,
       })
     }
   } catch (err) {
