@@ -22,11 +22,19 @@ export default function DashboardPage() {
     redirectIfNoSession()
   }, [session, router, routerCalled, status])
 
+  const onClick = async () => {
+    const url = 'http://localhost:3000/api/users/getUser'
+    const res = await fetch(url)
+    const json = await res.json()
+    console.log('json', json)
+  }
+
   if (session) {
     console.log('session', session)
 
     return (
       <>
+        <button onClick={onClick}>Test Api</button>
         <Dashboard />
         <SignOutContainerStyled>
           <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
