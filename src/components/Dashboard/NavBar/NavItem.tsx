@@ -1,16 +1,25 @@
-import React, { FC } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 
-export const NavItem = ({ text, image }) => {
+export interface NavItemProps {
+  text: string
+  image: string
+  link: string
+}
+
+export const NavItem = ({ text, image, link }: NavItemProps) => {
   return (
-    <LinkStyled>
-      <IconStyled src={image} />
-      <PStyled>{text}</PStyled>
-    </LinkStyled>
+    <Link href={link}>
+      <LinkStyled>
+        <IconStyled src={image} />
+        <PStyled>{text}</PStyled>
+      </LinkStyled>
+    </Link>
   )
 }
 
-const LinkStyled = styled.a`
+const LinkStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
