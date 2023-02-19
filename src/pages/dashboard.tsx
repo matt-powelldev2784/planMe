@@ -22,11 +22,30 @@ export default function DashboardPage() {
     redirectIfNoSession()
   }, [session, router, routerCalled, status])
 
-  const onClick = async () => {
+  const getApiClickHandler = async () => {
     const url = 'http://localhost:3000/api/users/getUser'
     const res = await fetch(url)
     const json = await res.json()
-    console.log('json', json)
+    console.log('get_json', json)
+  }
+
+  const postApiClickHandler = async () => {
+    const url = 'http://localhost:3000/api/clients/addClient'
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'test name',
+        company_name: 'test company',
+        add1: 'test add1',
+        add2: 'test add2',
+        post_code: 'test postcode',
+      }),
+    }
+
+    const res = await fetch(url, requestOptions)
+    const json = await res.json()
+    console.log('post_json', json)
   }
 
   if (session) {
@@ -34,7 +53,8 @@ export default function DashboardPage() {
 
     return (
       <>
-        <button onClick={onClick}>Test Api</button>
+        <button onClick={getApiClickHandler}>Get Api</button>
+        <button onClick={postApiClickHandler}>Post Api</button>
         <Dashboard />
         <SignOutContainerStyled>
           <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>

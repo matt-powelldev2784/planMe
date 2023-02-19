@@ -12,15 +12,14 @@ datasource db {
 
 //clients db
 model Clients {
-   id               String  @id @default(cuid())
    email_id         String  @unique
-   name             String 
-   company_name     String
-   add1             String
-   add2             String 
-   post_code        String
+   name             String?
+   company_name     String?
+   add1             String?
+   add2             String?
+   post_code        String?
    
-   user User @relation(fields: [email_id], references: [email])
+   user             User    @relation(fields: [email_id], references: [email])
 }
 
 
