@@ -11,6 +11,7 @@ datasource db {
 }
 
 //clients db
+//----------------------------------------------------------------------------------
 model Clients {
    email_id         String  @unique
    name             String?
