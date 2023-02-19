@@ -22,14 +22,21 @@ export default function DashboardPage() {
     redirectIfNoSession()
   }, [session, router, routerCalled, status])
 
-  const getApiClickHandler = async () => {
+  const getUserClickHandler = async () => {
     const url = 'http://localhost:3000/api/users/getUser'
     const res = await fetch(url)
     const json = await res.json()
-    console.log('get_json', json)
+    console.log('get_user_json', json)
   }
 
-  const postApiClickHandler = async () => {
+  const getClientsClickHandler = async () => {
+    const url = 'http://localhost:3000/api/clients/getClients'
+    const res = await fetch(url)
+    const json = await res.json()
+    console.log('get__clients_json', json)
+  }
+
+  const postAddClientClickHandler = async () => {
     const url = 'http://localhost:3000/api/clients/addClient'
     const requestOptions = {
       method: 'POST',
@@ -45,7 +52,7 @@ export default function DashboardPage() {
 
     const res = await fetch(url, requestOptions)
     const json = await res.json()
-    console.log('post_json', json)
+    console.log('post_add_client_json', json)
   }
 
   if (session) {
@@ -53,8 +60,9 @@ export default function DashboardPage() {
 
     return (
       <>
-        <button onClick={getApiClickHandler}>Get Api</button>
-        <button onClick={postApiClickHandler}>Post Api</button>
+        <button onClick={getUserClickHandler}>Get User Api</button>
+        <button onClick={postAddClientClickHandler}>Post Add Client Api</button>
+        <button onClick={getClientsClickHandler}>Get Clients Api</button>
         <Dashboard />
         <SignOutContainerStyled>
           <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
