@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { NavBar } from '../NavBar/NavBar'
-import { Calender } from '../Calender/Calender'
+import { NavBar, Calender } from '@/components'
 
 export const Dashboard = () => {
   return (

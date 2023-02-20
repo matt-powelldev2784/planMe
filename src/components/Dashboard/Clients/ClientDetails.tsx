@@ -2,13 +2,14 @@ import { GetServerSideProps } from 'next'
 import styled from 'styled-components'
 
 export const ClientDetails = () => {
-  return <FlexboxStyled>Enter</FlexboxStyled>
+  return <FlexboxStyled>Enter1</FlexboxStyled>
 }
 
 const FlexboxStyled = styled.section`
-  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
   height: 90%;
-  max-width: 20rem;
-  max-height: 30rem;
-  color: var(--bg-primary);
+  color: var(--primary-text);
+  background: var(--bg-primary);
+  border: 3px solid green;
 `

@@ -1,9 +1,11 @@
 import { ClientDetails } from '@/components/Dashboard/Clients/ClientDetails'
 
-const ClientDetails = () => {
+const ClientsList = () => {
   return (
     <>
       <ClientDetails />
     </>
   )
 }
+
+export default ClientsList

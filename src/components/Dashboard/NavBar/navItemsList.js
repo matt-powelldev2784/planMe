@@ -15,6 +15,6 @@ export const navItemsList = [
     key: 3,
     text: 'Clients',
     image: './clients.svg',
-    link: '/clients',
+    link: '/clients/',
   },
 ]
