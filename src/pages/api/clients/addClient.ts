@@ -7,18 +7,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
   const { name, company_name, add1, add2, post_code } = req.body
+  const email = session?.user?.email
 
   try {
-    if (session && method === 'POST') {
-      const email = session?.user?.email
+    if (email && method === 'POST') {
+      const user_id = await prisma.user.findUnique({
+        where: { email },
+        select: { id: true },
+      })
 
-      if (!email) {
+      if (!user_id) {
         res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
       }
 
-      if (email) {
-        const newClient = await prisma.clients.create({
-          data: { email_id: email, name, company_name, add1, add2, post_code },
+      if (user_id) {
+        const newClient = await prisma.client.create({
+          data: { user_id: user_id.id, name, company_name, add1, add2, post_code },
         })
 
         res.status(201).json({

@@ -1,3 +1,4 @@
+import prisma from 'prisma/db/prismadb'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../auth/[...nextauth]'
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -5,14 +6,24 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
+  const email = session?.user?.email
 
   try {
-    if (session && method === 'GET') {
+    if (email && method === 'GET') {
       const { user } = session
+
+      const user_id = await prisma.user.findUnique({
+        where: { email },
+        select: { id: true },
+      })
+
       res.status(201).json({
         success: true,
         status: 201,
-        data: user,
+        data: {
+          user,
+          user_id,
+        },
       })
     }
   } catch (err: any) {

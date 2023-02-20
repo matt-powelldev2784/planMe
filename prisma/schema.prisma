@@ -12,15 +12,16 @@ datasource db {
 
 //clients db
 //----------------------------------------------------------------------------------
-model Clients {
-   email_id         String  @unique
+model Client {
+   id               String  @id @default(cuid())
    name             String?
    company_name     String?
    add1             String?
    add2             String?
    post_code        String?
    
-   user             User    @relation(fields: [email_id], references: [email])
+   user_id          String  @unique
+   user             User    @relation(fields: [user_id], references: [id])
 }
 
 
@@ -34,7 +35,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  clients       Clients?
+  clients       Client[]
 }
 
 
