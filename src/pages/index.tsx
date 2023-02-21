@@ -7,7 +7,13 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { TitleCard } from '@/components'
 
+import { selectUserState, setUserState } from '../redux/store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const authState = useSelector(selectUserState)
+  console.log('authState', authState)
+
   const LoginProviders =
     providers &&
     Object.values(providers).map((provider) => (
