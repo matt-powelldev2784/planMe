@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import { userSlice } from './userSlice'
+import { userSlice } from '../slices/userSlice'
 import { createWrapper } from 'next-redux-wrapper'
 
 const makeStore = () =>
