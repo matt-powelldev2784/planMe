@@ -50,7 +50,7 @@ export default function DashboardPage() {
   const postAddClientClickHandler = async () => {
     console.log('user_id', user_id)
 
-    const url = 'http://localhost:3000/api/clients/addClient'
+    const url = 'http://localhost:3000/api/clients/client'
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
