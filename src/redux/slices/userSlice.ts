@@ -4,14 +4,12 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 // Type for our state
 export interface UserState {
-  userState: boolean
   user_id: string | null
   user: {} | null
 }
 
 // Initial state
 const initialState: UserState = {
-  userState: false,
   user_id: null,
   user: null,
 }
