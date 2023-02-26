@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
-import LogoutIcon from '../../public/logout.svg'
-import { selectUserId } from '../redux/slices/userSlice'
+import LogoutIcon from '../../../public/logout.svg'
+import { selectUserId } from '../../redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserId, getUser } from '../redux/slices/userSlice'
+import { getUserId, getUser } from '../../redux/slices/userSlice'
 import { getClients, selectClients } from '@/redux/slices/clientsSlice'
 
 export default function DashboardPage() {
