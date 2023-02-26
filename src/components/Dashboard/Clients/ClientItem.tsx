@@ -26,7 +26,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ name, company_name, add1
   )
 }
 
-const StyledClientContainer = styled.li`
+const StyledClientContainer = styled.div`
   width: 98%;
   height: 3rem;
   background: var(--bg-secondary);
@@ -35,7 +35,7 @@ const StyledClientContainer = styled.li`
   overflow: hidden;
 `
 
-const StyledButtonFlexbox = styled.li`
+const StyledButtonFlexbox = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
