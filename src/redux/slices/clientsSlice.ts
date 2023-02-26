@@ -22,7 +22,7 @@ const initialState: ClientsState = {
   clientsList: [],
 }
 
-export const getClients = createAsyncThunk('clientsState/clients', async (user_id) => {
+export const getClients = createAsyncThunk('clientsState/clients', async (user_id: string) => {
   try {
     const url = `http://localhost:3000/api/clients/${user_id}`
     const res = await fetch(url)

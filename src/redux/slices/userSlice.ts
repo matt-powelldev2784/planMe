@@ -12,7 +12,7 @@ const initialState: UserState = {
   user: null,
 }
 
-export const getUser = createAsyncThunk('userState/user', async () => {
+export const getUser = createAsyncThunk('userState/user', async (): Promise<any> => {
   try {
     const url = 'http://localhost:3000/api/users/user'
     const res = await fetch(url)

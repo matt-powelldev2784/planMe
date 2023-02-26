@@ -7,17 +7,17 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import LogoutIcon from '../../../public/logout.svg'
 import { selectUserId } from '../../redux/slices/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../redux/slices/userSlice'
 import { getClients, selectClients } from '@/redux/slices/clientsSlice'
 
-export default function DashboardPage() {
+export default function CalendarPage() {
   const { data: session, status } = useSession()
   let router = useRouter()
   const [routerCalled, setRouterCalled] = useState(false)
   const user_id = useSelector(selectUserId)
-  const dispatch = useDispatch()
-  const clients = useSelector(selectClients)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const redirectIfNoSession = () => {

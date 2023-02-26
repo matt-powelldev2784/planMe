@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const ClientItem = ({ name, company_name, add1, add2, post_code }) => {
+interface ClientItemProps {
+  name: string
+  company_name: string
+  add1: string
+  add2: string
+  post_code: string
+}
+
+export const ClientItem: React.FC<ClientItemProps> = ({ name, company_name, add1, add2, post_code }) => {
   return (
     <StyledClientContainer>
       <StyledButtonFlexbox>
