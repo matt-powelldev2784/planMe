@@ -30,6 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         success: true,
         status: 201,
         msg: 'New Client added to database',
+        data: newClient,
       })
 
       //   res.status(201).json({
