@@ -3,7 +3,7 @@ export const navItemsList = [
     key: 1,
     text: 'Calender',
     image: './calender.svg',
-    link: '/calander',
+    link: '/calendar',
   },
   {
     key: 2,

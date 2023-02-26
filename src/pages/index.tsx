@@ -47,7 +47,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions)
 
   if (session) {
-    return { redirect: { destination: '/dashboard' } }
+    return { redirect: { destination: '/calendar' } }
   }
 
   const providers = await getProviders()

@@ -1,5 +1,5 @@
 export { HomePage } from './HomePage/HomePage'
-export { Dashboard } from './Dashboard/Dashboard/Dashboard'
+export { Calendar } from './Dashboard/Calendar/Calendar'
 export { TitleCard } from './HomePage/TitleCard'
 export { NavBar } from './Dashboard/NavBar/NavBar'
-export { Calender } from './Dashboard/Calender/Calender'
+export { Calender } from './Dashboard/Calendar/CalenderItems'

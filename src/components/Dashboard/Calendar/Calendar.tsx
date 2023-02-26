@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavBar, Calender } from '@/components'
 
-export const Dashboard = () => {
+export const Calendar = () => {
   return (
     <StyledDashboardDiv>
       <NavBar />

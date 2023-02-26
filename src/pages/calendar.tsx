@@ -1,6 +1,6 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useEffect } from 'react'
-import { Dashboard } from '@/components'
+import { Calendar } from '@/components'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import styled from 'styled-components'
@@ -41,7 +41,7 @@ export default function DashboardPage() {
   if (session) {
     return (
       <>
-        <Dashboard />
+        <Calendar />
         <SignOutContainerStyled>
           <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
             <Image src={LogoutIcon} width={30} height={30} alt="Lady in canoe on a lake" />

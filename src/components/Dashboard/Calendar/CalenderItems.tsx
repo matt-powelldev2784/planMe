@@ -6,8 +6,6 @@ import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
 import { DateInput } from '@/components/ui/DateInput'
 
 export const Calender = () => {
-  console.log('DateInput', DateInput)
-
   return (
     <StyledCalenderSection>
       <PageMenu title="Calander" menuItem={{ menuTitle: 'Date Selector', component: DateInput }} />
