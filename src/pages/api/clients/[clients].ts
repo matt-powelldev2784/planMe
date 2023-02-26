@@ -6,6 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
+  const user_id = req.query.clients?.toString()
 
   try {
     if (session && method === 'GET') {
@@ -16,8 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       if (email) {
-        const clients = await prisma.clients.findMany({
-          where: { email_id: email },
+        const { clients } = await prisma.user.findUnique({
+          where: { id: user_id },
+          include: { clients: true },
         })
 
         res.status(201).json({

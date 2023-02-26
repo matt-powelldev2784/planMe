@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { getProviders, signIn } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
@@ -6,13 +6,17 @@ import { authOptions } from './api/auth/[...nextauth]'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { TitleCard } from '@/components'
-
 import { selectUserState, setUserState } from '../redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const authState = useSelector(selectUserState)
-  console.log('authState', authState)
+  const userState = useSelector(selectUserState)
+  const dispatch = useDispatch()
+  console.log('userState', userState)
+
+  useEffect(() => {
+    dispatch(setUserState(true))
+  }, [dispatch])
 
   const LoginProviders =
     providers &&

@@ -12,16 +12,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (email && method === 'GET') {
       const { user } = session
 
-      const user_id = await prisma.user.findUnique({
+      const userDetail = await prisma.user.findUnique({
         where: { email },
-        select: { id: true },
+        select: {
+          id: true,
+        },
       })
+
+      const user_id = userDetail
+      console.log('user_id', user_id)
 
       res.status(201).json({
         success: true,
         status: 201,
         data: {
-          user,
           user_id,
         },
       })

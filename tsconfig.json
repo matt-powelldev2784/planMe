@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/users/adduser.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "_trash/adduser.js"],
   "exclude": ["node_modules"]
 }

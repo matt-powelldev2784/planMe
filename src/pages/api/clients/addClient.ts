@@ -6,32 +6,39 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
-  const { name, company_name, add1, add2, post_code } = req.body
+  const { user_id, name, company_name, add1, add2, post_code } = req.body
   const email = session?.user?.email
+  console.log('user_id', user_id)
 
   try {
     if (email && method === 'POST') {
-      const user_id = await prisma.user.findUnique({
-        where: { email },
-        select: { id: true },
+      // const user = await prisma.user.findUnique({
+      //   where: { id: user_id },
+      //   select: { id: true },
+      // })
+      // console.log('user', user)
+
+      // if (!user) {
+      //   res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
+      // }
+
+      const newClient = await prisma.client.create({
+        data: { user_id: user_id, name, company_name, add1, add2, post_code },
       })
 
-      if (!user_id) {
-        res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
-      }
+      res.status(201).json({
+        success: true,
+        status: 201,
+        msg: 'New Client added to database',
+      })
 
-      if (user_id) {
-        const newClient = await prisma.client.create({
-          data: { user_id: user_id.id, name, company_name, add1, add2, post_code },
-        })
-
-        res.status(201).json({
-          success: true,
-          status: 201,
-          msg: 'New Client added to database',
-          data: newClient,
-        })
-      }
+      //   res.status(201).json({
+      //     success: true,
+      //     status: 201,
+      //     msg: 'New Client added to database',
+      //     data: newClient,
+      //   })
+      //}
     }
   } catch (err: any) {
     console.error(err.message)

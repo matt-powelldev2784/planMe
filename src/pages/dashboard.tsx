@@ -6,11 +6,17 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import LogoutIcon from '../../public/logout.svg'
+import { selectUserState, selectUserId } from '../redux/slices/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserId, getUser } from '../redux/slices/userSlice'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
   let router = useRouter()
   const [routerCalled, setRouterCalled] = useState(false)
+  const user_id = useSelector(selectUserId)
+  const dispatch = useDispatch()
+  console.log('user_id', user_id)
 
   useEffect(() => {
     const redirectIfNoSession = () => {
@@ -22,26 +28,34 @@ export default function DashboardPage() {
     redirectIfNoSession()
   }, [session, router, routerCalled, status])
 
+  useEffect(() => {
+    dispatch(getUser())
+    dispatch(getUserId())
+  }, [dispatch])
+
   const getUserClickHandler = async () => {
-    const url = 'http://localhost:3000/api/users/getUser'
+    const url = 'http://localhost:3000/api/users/user'
     const res = await fetch(url)
     const json = await res.json()
     console.log('get_user_json', json)
   }
 
   const getClientsClickHandler = async () => {
-    const url = 'http://localhost:3000/api/clients/getClients'
+    const url = 'http://localhost:3000/api/clients/cle62bmj40000pgd8tf21zcob'
     const res = await fetch(url)
     const json = await res.json()
     console.log('get__clients_json', json)
   }
 
   const postAddClientClickHandler = async () => {
+    console.log('user_id', user_id)
+
     const url = 'http://localhost:3000/api/clients/addClient'
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        user_id: user_id,
         name: 'test name',
         company_name: 'test company',
         add1: 'test add1',
@@ -56,8 +70,6 @@ export default function DashboardPage() {
   }
 
   if (session) {
-    console.log('session', session)
-
     return (
       <>
         <button onClick={getUserClickHandler}>Get User Api</button>

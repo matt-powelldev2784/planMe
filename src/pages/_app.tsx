@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 const notoSans = Noto_Sans_JP({ weight: ['300', '400', '700', '900'], subsets: ['latin'] })
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const { store, props } = wrapper.useWrappedStore(App)
+  const { store, props } = wrapper.useWrappedStore(pageProps)
   return (
     <Provider store={store}>
       <SessionProvider session={session}>
