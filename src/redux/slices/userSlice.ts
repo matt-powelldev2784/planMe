@@ -55,8 +55,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserState(state, action) {
-      state.userState = action.payload
+    setDummyReducer(state, action) {
+      state.dummyState = action.payload
     },
   },
   // extraReducers: {
