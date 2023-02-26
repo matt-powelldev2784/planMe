@@ -12,16 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (email && method === 'POST') {
-      // const user = await prisma.user.findUnique({
-      //   where: { id: user_id },
-      //   select: { id: true },
-      // })
-      // console.log('user', user)
-
-      // if (!user) {
-      //   res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
-      // }
-
       const newClient = await prisma.client.create({
         data: { user_id: user_id, name, company_name, add1, add2, post_code },
       })
@@ -32,14 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         msg: 'New Client added to database',
         data: newClient,
       })
-
-      //   res.status(201).json({
-      //     success: true,
-      //     status: 201,
-      //     msg: 'New Client added to database',
-      //     data: newClient,
-      //   })
-      //}
     }
   } catch (err: any) {
     console.error(err.message)
