@@ -1,37 +1,38 @@
+import { useEffect } from 'react'
 import { ClientDetails } from '@/components/Dashboard/Clients/ClientDetails'
-import { GetServerSideProps } from 'next'
-import { getServerSession } from 'next-auth/next'
-import { getUser } from '@/redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { authOptions } from '../api/auth/[...nextauth]'
+import { getClients } from '@/redux/slices/clientsSlice'
+import { selectUserId, getUserId } from '../../redux/slices/userSlice'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-const ClientsList = ({ clients }) => {
+const ClientsList = () => {
+  const { data: session, status } = useSession()
+  const [routerCalled, setRouterCalled] = useState(false)
+  let router = useRouter()
   const dispatch = useDispatch()
+  const user_id = useSelector(selectUserId)
 
-  if (clients) {
-    console.log('clients', clients)
-  }
+  useEffect(() => {
+    const redirectIfNoSession = () => {
+      if (status === 'unauthenticated') {
+        router?.push('/')
+        setRouterCalled(true)
+      }
+    }
+    redirectIfNoSession()
+  }, [session, router, routerCalled, status])
+
+  useEffect(() => {
+    if (user_id) dispatch(getClients(user_id))
+  }, [dispatch, user_id])
 
   return (
     <>
       <ClientDetails />
     </>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await getServerSession(req, res, authOptions)
-  console.log('session', session)
-  if (session) {
-    const url = 'http://localhost:3000/api/clients/getClients'
-    const res = await fetch(url)
-    console.log('res', res)
-    const clients = await res.json()
-  }
-
-  return {
-    props: {},
-  }
 }
 
 export default ClientsList

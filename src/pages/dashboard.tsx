@@ -6,9 +6,10 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import LogoutIcon from '../../public/logout.svg'
-import { selectUserState, selectUserId } from '../redux/slices/userSlice'
+import { selectUserId } from '../redux/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserId, getUser } from '../redux/slices/userSlice'
+import { getClients, selectClients } from '@/redux/slices/clientsSlice'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -16,6 +17,9 @@ export default function DashboardPage() {
   const [routerCalled, setRouterCalled] = useState(false)
   const user_id = useSelector(selectUserId)
   const dispatch = useDispatch()
+  const clients = useSelector(selectClients)
+  console.log('clients', clients)
+  console.log('session', session)
 
   useEffect(() => {
     const redirectIfNoSession = () => {
@@ -32,48 +36,13 @@ export default function DashboardPage() {
     dispatch(getUserId())
   }, [dispatch])
 
-  const getUserClickHandler = async () => {
-    const url = 'http://localhost:3000/api/users/user'
-    const res = await fetch(url)
-    const json = await res.json()
-    console.log('get_user_json', json)
-  }
-
-  const getClientsClickHandler = async () => {
-    const url = 'http://localhost:3000/api/clients/cle62bmj40000pgd8tf21zcob'
-    const res = await fetch(url)
-    const json = await res.json()
-    console.log('get__clients_json', json)
-  }
-
-  const postAddClientClickHandler = async () => {
-    console.log('user_id', user_id)
-
-    const url = 'http://localhost:3000/api/clients/client'
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user_id: user_id,
-        name: 'test name',
-        company_name: 'test company',
-        add1: 'test add1',
-        add2: 'test add2',
-        post_code: 'test postcode',
-      }),
-    }
-
-    const res = await fetch(url, requestOptions)
-    const json = await res.json()
-    console.log('post_add_client_json', json)
-  }
+  useEffect(() => {
+    if (user_id) dispatch(getClients(user_id))
+  }, [dispatch, user_id])
 
   if (session) {
     return (
       <>
-        <button onClick={getUserClickHandler}>Get User Api</button>
-        <button onClick={postAddClientClickHandler}>Post Add Client Api</button>
-        <button onClick={getClientsClickHandler}>Get Clients Api</button>
         <Dashboard />
         <SignOutContainerStyled>
           <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
