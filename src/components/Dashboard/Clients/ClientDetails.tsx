@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { NavBar } from '@/components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectClients } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
 import { PageMenu } from '@/components/ui/pageMenu/PageMenu'

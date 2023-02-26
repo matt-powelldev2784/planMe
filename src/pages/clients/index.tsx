@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { ClientDetails } from '@/components/Dashboard/Clients/ClientDetails'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '@/redux/store/reduxHooks'
 import { getClients } from '@/redux/slices/clientsSlice'
-import { selectUserId, getUserId } from '../../redux/slices/userSlice'
+import { selectUserId } from '../../redux/slices/userSlice'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -11,7 +12,7 @@ const ClientsList = () => {
   const { data: session, status } = useSession()
   const [routerCalled, setRouterCalled] = useState(false)
   let router = useRouter()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const user_id = useSelector(selectUserId)
 
   useEffect(() => {
