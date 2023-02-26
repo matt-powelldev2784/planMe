@@ -10,7 +10,7 @@ import { selectUserId } from '../../redux/slices/userSlice'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../redux/slices/userSlice'
-import { getClients, selectClients } from '@/redux/slices/clientsSlice'
+import { getClients } from '@/redux/slices/clientsSlice'
 
 export default function CalendarPage() {
   const { data: session, status } = useSession()

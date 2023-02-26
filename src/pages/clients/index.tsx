@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { ClientDetails } from '@/components/Dashboard/Clients/ClientDetails'
+import { ClientDetails } from '@/components'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '@/redux/store/reduxHooks'
 import { getClients } from '@/redux/slices/clientsSlice'
