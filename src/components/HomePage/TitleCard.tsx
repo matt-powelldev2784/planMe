@@ -6,19 +6,19 @@ import PlanMeLogo from 'public/planMe_logoV2.svg'
 
 export const TitleCard = () => {
   return (
-    <TitleCardFlexbox>
-      <HomeTextContainer>
-        <PlanMeLogoContainer>
+    <StyledTitleCardFlexbox>
+      <StyledHomeTextContainer>
+        <StyledPlanMeLogoContainer>
           <Image src={PlanMeLogo} fill alt="PlanMe Logo" />
-        </PlanMeLogoContainer>
-        <HomePageH1>Schedule Jobs From Anywhere!</HomePageH1>
+        </StyledPlanMeLogoContainer>
+        <StyledHomePageH1>Schedule Jobs From Anywhere!</StyledHomePageH1>
         <HomeCard />
-      </HomeTextContainer>
-    </TitleCardFlexbox>
+      </StyledHomeTextContainer>
+    </StyledTitleCardFlexbox>
   )
 }
 
-const TitleCardFlexbox = styled.article`
+const StyledTitleCardFlexbox = styled.article`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ const TitleCardFlexbox = styled.article`
   align-items: center;
 `
 
-const PlanMeLogoContainer = styled.div`
+const StyledPlanMeLogoContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: 22rem;
@@ -40,18 +40,7 @@ const PlanMeLogoContainer = styled.div`
   }
 `
 
-const PlanMeLogoImg = styled.img`
-  width: 26rem;
-  height: auto;
-  @media only screen and (max-width: 992px) {
-    width: clamp(18rem, 40vw, 40rem);
-  }
-  @media only screen and (max-width: 441px) {
-    width: clamp(16rem, 40vw, 40rem);
-  }
-`
-
-const HomeTextContainer = styled.div`
+const StyledHomeTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +57,7 @@ const HomeTextContainer = styled.div`
   }
 `
 
-const HomePageH1 = styled.h1`
+const StyledHomePageH1 = styled.h1`
   font-size: clamp(0.9rem, 8vw, 1.2rem);
   font-weight: 700;
   text-align: center;

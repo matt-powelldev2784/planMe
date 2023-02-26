@@ -4,18 +4,18 @@ import { NavItems } from './NavItems'
 
 export const NavBar = () => {
   return (
-    <NavFlexBoxStyled>
-      <LogoFlexboxStyled>
-        <LogoImgStyled src="./planMe_logoV2.svg" />
-      </LogoFlexboxStyled>
-      <LinksFlexBoxStyled>
+    <StyledNavFlexBox>
+      <StyledLogoFlexbox>
+        <StyledLogoImg src="./planMe_logoV2.svg" />
+      </StyledLogoFlexbox>
+      <StyledLinksFlexBox>
         <NavItems />
-      </LinksFlexBoxStyled>
-    </NavFlexBoxStyled>
+      </StyledLinksFlexBox>
+    </StyledNavFlexBox>
   )
 }
 
-const NavFlexBoxStyled = styled.nav`
+const StyledNavFlexBox = styled.nav`
   position: relative;
   width: 100vw;
   min-width: 310px;
@@ -34,7 +34,7 @@ const NavFlexBoxStyled = styled.nav`
   }
 `
 
-const LogoFlexboxStyled = styled.div`
+const StyledLogoFlexbox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -46,7 +46,7 @@ const LogoFlexboxStyled = styled.div`
   }
 `
 
-const LogoImgStyled = styled.img`
+const StyledLogoImg = styled.img`
   height: 5rem;
   width: auto;
   @media only screen and (max-width: 441px) {
@@ -54,7 +54,7 @@ const LogoImgStyled = styled.img`
   }
 `
 
-const LinksFlexBoxStyled = styled.div`
+const StyledLinksFlexBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;

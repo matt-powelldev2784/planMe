@@ -1,29 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavBar } from './NavBar'
+import { NavBar } from '../../../_trash/NavBar'
 import { TitleCard } from './TitleCard'
 
 export const HomePage = () => {
   return (
-    <HeroSectionStyled>
+    <StyledHeroSection>
       <NavBar />
-      <LeftSectionFlexboxStyled>
+      <StyledLeftSectionFlexbox>
         <TitleCard />
-      </LeftSectionFlexboxStyled>
-      <RightSectionFlexboxStyled></RightSectionFlexboxStyled>
-      <ImgStyled src="./homepage_hero_lake_v3.jpg" />
-    </HeroSectionStyled>
+      </StyledLeftSectionFlexbox>
+      <StyledRightSectionFlexbox></StyledRightSectionFlexbox>
+      <StyledImg src="./homepage_hero_lake_v3.jpg" />
+    </StyledHeroSection>
   )
 }
 
-const HeroSectionStyled = styled.section`
+const StyledHeroSection = styled.section`
   position: relative;
   width: 100vw;
   height: 100vh;
   background: var(--bg-primary);
 `
 
-const LeftSectionFlexboxStyled = styled.div`
+const StyledLeftSectionFlexbox = styled.div`
   position: absolute;
   width: 50%;
   height: 100%;
@@ -34,7 +34,7 @@ const LeftSectionFlexboxStyled = styled.div`
   }
 `
 
-const RightSectionFlexboxStyled = styled.div`
+const StyledRightSectionFlexbox = styled.div`
   position: absolute;
   right: 0;
   width: 50%;
@@ -48,7 +48,7 @@ const RightSectionFlexboxStyled = styled.div`
   }
 `
 
-const ImgStyled = styled.img`
+const StyledImg = styled.img`
   position: absolute;
   right: 0;
   width: 56vw;

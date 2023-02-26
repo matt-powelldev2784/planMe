@@ -11,22 +11,22 @@ export interface NavItemProps {
 export const NavItem = ({ text, image, link }: NavItemProps) => {
   return (
     <Link href={link}>
-      <LinkStyled>
-        <IconStyled src={image} />
-        <PStyled>{text}</PStyled>
-      </LinkStyled>
+      <StyledLink>
+        <StyledIcon src={image} />
+        <StyledP>{text}</StyledP>
+      </StyledLink>
     </Link>
   )
 }
 
-const LinkStyled = styled.div`
+const StyledLink = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 5rem;
 `
 
-const IconStyled = styled.img`
+const StyledIcon = styled.img`
   width: 1.8rem;
   height: auto;
   margin: 1rem;
@@ -36,7 +36,7 @@ const IconStyled = styled.img`
   }
 `
 
-const PStyled = styled.p`
+const StyledP = styled.p`
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--primary-text);

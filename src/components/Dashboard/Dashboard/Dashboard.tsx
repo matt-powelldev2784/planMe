@@ -4,14 +4,14 @@ import { NavBar, Calender } from '@/components'
 
 export const Dashboard = () => {
   return (
-    <DashboardDiv>
+    <StyledDashboardDiv>
       <NavBar />
       <Calender />
-    </DashboardDiv>
+    </StyledDashboardDiv>
   )
 }
 
-const DashboardDiv = styled.div`
+const StyledDashboardDiv = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   background: var(--bg-primary);

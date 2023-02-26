@@ -3,17 +3,17 @@ import styled from 'styled-components'
 
 export const JobItem = () => {
   return (
-    <JobItemFlexbox>
-      <DetailsFlexbox>
-        <PStyled>JobItem Client</PStyled>
-        <PStyled>JobItem Job</PStyled>
-      </DetailsFlexbox>
-      <ImgStyled src="./plus.svg"></ImgStyled>
-    </JobItemFlexbox>
+    <StyledJobItemFlexbox>
+      <StyledDetailsFlexbox>
+        <StyledP>JobItem Client</StyledP>
+        <StyledP>JobItem Job</StyledP>
+      </StyledDetailsFlexbox>
+      <StyledImg src="./plus.svg"></StyledImg>
+    </StyledJobItemFlexbox>
   )
 }
 
-const JobItemFlexbox = styled.li`
+const StyledJobItemFlexbox = styled.li`
   position: relative;
   height: 4rem;
   display: flex;
@@ -25,7 +25,7 @@ const JobItemFlexbox = styled.li`
   background: var(--bg-secondary);
 `
 
-const DetailsFlexbox = styled.div`
+const StyledDetailsFlexbox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ const DetailsFlexbox = styled.div`
   width: 85%;
 `
 
-const PStyled = styled.p`
+const StyledP = styled.p`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +46,7 @@ const PStyled = styled.p`
   overflow: hidden;
 `
 
-const ImgStyled = styled.img`
+const StyledImg = styled.img`
   width: 15%;
   height: 1.5rem;
 `

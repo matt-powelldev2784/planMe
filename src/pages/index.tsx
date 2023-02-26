@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { getProviders, signIn } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
@@ -6,50 +6,40 @@ import { authOptions } from './api/auth/[...nextauth]'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { TitleCard } from '@/components'
-import { selectUserState, setUserState } from '../redux/slices/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
 
 export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const userState = useSelector(selectUserState)
-  const dispatch = useDispatch()
-  console.log('userState', userState)
-
-  useEffect(() => {
-    dispatch(setUserState(true))
-  }, [dispatch])
-
   const LoginProviders =
     providers &&
     Object.values(providers).map((provider) => (
-      <LinkStyled key={provider.name} onClick={() => signIn(provider.id)}>
+      <StyledLink key={provider.name} onClick={() => signIn(provider.id)}>
         Log In
-      </LinkStyled>
+      </StyledLink>
     ))
 
   return (
-    <HeroSectionStyled>
-      <NavFlexBoxStyled>
-        <LinksFlexBoxStyled>
+    <StyledHeroSection>
+      <StyledNavFlexBox>
+        <StyledLinksFlexBox>
           {LoginProviders}
-          <LinkStyled>Sign Up</LinkStyled>
-        </LinksFlexBoxStyled>
-      </NavFlexBoxStyled>
+          <StyledLink>Sign Up</StyledLink>
+        </StyledLinksFlexBox>
+      </StyledNavFlexBox>
 
-      <LeftSectionFlexboxStyled>
+      <StyledLeftSectionFlexbox>
         <TitleCard />
-      </LeftSectionFlexboxStyled>
+      </StyledLeftSectionFlexbox>
 
-      <RightSectionFlexboxStyled>
-        <ImageContainerStyled>
+      <StyledRightSectionFlexbox>
+        <StyledImageContainer>
           <Image
             src="/homepage_hero_lake_v3.jpg"
             fill
             style={{ objectFit: 'cover' }}
             alt="Lady in canoe on a lake"
           />
-        </ImageContainerStyled>
-      </RightSectionFlexboxStyled>
-    </HeroSectionStyled>
+        </StyledImageContainer>
+      </StyledRightSectionFlexbox>
+    </StyledHeroSection>
   )
 }
 
@@ -67,7 +57,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 }
 
-const NavFlexBoxStyled = styled.nav`
+const StyledHeroSection = styled.section`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-primary);
+`
+
+const StyledNavFlexBox = styled.nav`
   position: absolute;
   width: 90vw;
   height: auto;
@@ -83,7 +80,7 @@ const NavFlexBoxStyled = styled.nav`
   }
 `
 
-const LinksFlexBoxStyled = styled.div`
+const StyledLinksFlexBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -99,7 +96,7 @@ const LinksFlexBoxStyled = styled.div`
   }
 `
 
-const LinkStyled = styled.a`
+const StyledLink = styled.a`
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--primary-text);
@@ -108,14 +105,7 @@ const LinkStyled = styled.a`
   cursor: pointer;
 `
 
-const HeroSectionStyled = styled.section`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: var(--bg-primary);
-`
-
-const LeftSectionFlexboxStyled = styled.div`
+const StyledLeftSectionFlexbox = styled.div`
   position: absolute;
   width: 50%;
   height: 100%;
@@ -128,7 +118,7 @@ const LeftSectionFlexboxStyled = styled.div`
   }
 `
 
-const RightSectionFlexboxStyled = styled.div`
+const StyledRightSectionFlexbox = styled.div`
   position: absolute;
   right: 0;
   width: 56%;
@@ -140,7 +130,7 @@ const RightSectionFlexboxStyled = styled.div`
     width: 100%;
   }
 `
-const ImageContainerStyled = styled.div`
+const StyledImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;

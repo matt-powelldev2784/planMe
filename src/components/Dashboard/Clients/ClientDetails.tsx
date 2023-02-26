@@ -26,21 +26,21 @@ export const ClientDetails = () => {
   }
 
   return (
-    <DashboardDiv>
+    <StyledDashboardDiv>
       <NavBar />
       <PageMenu title="Clients List" />
-      <ClientsFlexbox>{clientItems}</ClientsFlexbox>
-    </DashboardDiv>
+      <StyledClientsFlexbox>{clientItems}</StyledClientsFlexbox>
+    </StyledDashboardDiv>
   )
 }
 
-const DashboardDiv = styled.div`
+const StyledDashboardDiv = styled.div`
   min-width: 100vw;
   min-height: 100vh;
   background: var(--bg-primary);
 `
 
-const ClientsFlexbox = styled.ol`
+const StyledClientsFlexbox = styled.ol`
   width: 90vw;
   height: auto;
   display: block;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DayItem } from './DayItem'
-import { CalenderMenu } from './CalenderMenu'
+import { CalenderMenu } from '../../../../_trash/CalenderMenu'
 import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
 import { DateInput } from '@/components/ui/DateInput'
 
@@ -9,25 +9,25 @@ export const Calender = () => {
   console.log('DateInput', DateInput)
 
   return (
-    <CalenderSectionStyled>
+    <StyledCalenderSection>
       <PageMenu title="Calander" menuItem={{ menuTitle: 'Date Selector', component: DateInput }} />
-      <CalenderGrid>
+      <StyledCalenderGrid>
         <DayItem />
         <DayItem />
         <DayItem />
         <DayItem />
         <DayItem />
-      </CalenderGrid>
-    </CalenderSectionStyled>
+      </StyledCalenderGrid>
+    </StyledCalenderSection>
   )
 }
 
-const CalenderSectionStyled = styled.section`
+const StyledCalenderSection = styled.section`
   position: relative;
   width: 100vw;
   min-height: 100%;
 `
-const CalenderGrid = styled.ol`
+const StyledCalenderGrid = styled.ol`
   width: 98vw;
   height: auto;
   display: grid;

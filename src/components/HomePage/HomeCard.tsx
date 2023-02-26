@@ -7,24 +7,24 @@ import PlusSvg from 'public/plus_yellow.svg'
 
 export const HomeCard = () => {
   return (
-    <HomeCardConatiner>
-      <IconsFlexbox>
+    <StyledHomeCardConatiner>
+      <StyledIconsFlexbox>
         <Image src={clockSvg} alt="Clock Icon" />
         <Image src={PhoneSvg} alt="Mobile Phone Icon" />
         <Image src={PlusSvg} alt="Plus Symbol Icon" />
-      </IconsFlexbox>
-      <PStyled>Save time and get more done</PStyled>
-      <PStyled>Manage and organise better</PStyled>
-      <PStyled>Schedule jobs on a smartphone</PStyled>
-    </HomeCardConatiner>
+      </StyledIconsFlexbox>
+      <StyledP>Save time and get more done</StyledP>
+      <StyledP>Manage and organise better</StyledP>
+      <StyledP>Schedule jobs on a smartphone</StyledP>
+    </StyledHomeCardConatiner>
   )
 }
 
-const HomeCardConatiner = styled.div`
+const StyledHomeCardConatiner = styled.div`
   padding: 1rem;
 `
 
-const IconsFlexbox = styled.div`
+const StyledIconsFlexbox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,13 +32,7 @@ const IconsFlexbox = styled.div`
   padding: 1rem;
 `
 
-const IconStyled = styled.img`
-  width: 3rem;
-  height: auto;
-  margin: 1rem;
-`
-
-const PStyled = styled.p`
+const StyledP = styled.p`
   width: 100%;
   font-size: 1.2rem;
   text-align: center;

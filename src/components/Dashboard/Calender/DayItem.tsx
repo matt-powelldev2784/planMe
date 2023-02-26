@@ -8,9 +8,9 @@ export interface CalenderDayItemProps {
 
 export const DayItem = () => {
   return (
-    <CalenderDayGridItem>
-      <DatePStyled>1st January 2023</DatePStyled>
-      <TimeItemConatiner>
+    <StyledCalenderDayGridItem>
+      <StyledDateP>1st January 2023</StyledDateP>
+      <StyledTimeItemConatiner>
         <JobItem />
         <JobItem />
         <JobItem />
@@ -21,12 +21,12 @@ export const DayItem = () => {
         <JobItem />
         <JobItem />
         <JobItem />
-      </TimeItemConatiner>
-    </CalenderDayGridItem>
+      </StyledTimeItemConatiner>
+    </StyledCalenderDayGridItem>
   )
 }
 
-const CalenderDayGridItem = styled.li`
+const StyledCalenderDayGridItem = styled.li`
   width: 100%;
   height: 100%;
   min-width: 10rem;
@@ -38,7 +38,7 @@ const CalenderDayGridItem = styled.li`
     min-width: 270px;
   }
 `
-const DatePStyled = styled.p`
+const StyledDateP = styled.p`
   text-align: center;
   padding: 0.5rem;
   font-weight: 700;
@@ -46,7 +46,7 @@ const DatePStyled = styled.p`
   background: var(--bg-secondary);
 `
 
-const TimeItemConatiner = styled.ol`
+const StyledTimeItemConatiner = styled.ol`
   width: 100%;
   height: 100%;
   padding-bottom: 2.5rem;

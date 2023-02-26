@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 export const ClientItem = ({ name, company_name, add1, add2, post_code }) => {
   return (
-    <ClientContainer>
+    <StyledClientContainer>
       {name} {company_name}
-    </ClientContainer>
+    </StyledClientContainer>
   )
 }
 
-const ClientContainer = styled.li`
+const StyledClientContainer = styled.li`
   width: 100%;
   background: var(--bg-secondary);
   border: 2px solid blue;
