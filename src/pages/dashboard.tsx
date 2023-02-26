@@ -16,7 +16,6 @@ export default function DashboardPage() {
   const [routerCalled, setRouterCalled] = useState(false)
   const user_id = useSelector(selectUserId)
   const dispatch = useDispatch()
-  console.log('user_id', user_id)
 
   useEffect(() => {
     const redirectIfNoSession = () => {

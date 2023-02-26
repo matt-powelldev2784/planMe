@@ -8,7 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { method } = req
   const { user_id, name, company_name, add1, add2, post_code } = req.body
   const email = session?.user?.email
-  console.log('user_id', user_id)
 
   try {
     if (email && method === 'POST') {

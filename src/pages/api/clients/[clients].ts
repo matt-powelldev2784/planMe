@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
-  const user_id = req.query.clients?.toString()
+  const user_id = req.query.clients
 
   try {
     if (session && method === 'GET') {
