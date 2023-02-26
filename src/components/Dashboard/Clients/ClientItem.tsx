@@ -24,6 +24,7 @@ const StyledClientContainer = styled.li`
   background: var(--bg-secondary);
   border-radius: 1rem;
   margin: 0.25rem;
+  overflow: hidden;
 `
 
 const StyledButtonFlexbox = styled.li`
