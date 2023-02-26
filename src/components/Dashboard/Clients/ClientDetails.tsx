@@ -45,6 +45,8 @@ const StyledClientsFlexbox = styled.ol`
   height: auto;
   display: block;
   margin: 1rem auto;
-  overflow-x: scroll;
-  border: 3px solid green;
+  @media only screen and (max-width: 992px) {
+    width: 97vw;
+    min-width: 300px;
+  }
 `
