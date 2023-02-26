@@ -7,8 +7,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import LogoutIcon from '../../../public/logout.svg'
 import { selectUserId } from '../../redux/slices/userSlice'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from '@/redux/store/reduxHooks'
+import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../redux/slices/userSlice'
 import { getClients } from '@/redux/slices/clientsSlice'
 
@@ -16,7 +15,7 @@ export default function CalendarPage() {
   const { data: session, status } = useSession()
   let router = useRouter()
   const [routerCalled, setRouterCalled] = useState(false)
-  const user_id = useSelector(selectUserId)
+  const user_id = useAppSelector(selectUserId)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

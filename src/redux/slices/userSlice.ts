@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { AppState } from '../store/store'
+import { useAppSelector } from '../store/reduxHooks'
 import { HYDRATE } from 'next-redux-wrapper'
 
 export interface UserState {

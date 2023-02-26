@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { ClientDetails } from '@/components'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from '@/redux/store/reduxHooks'
+import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
 import { getClients } from '@/redux/slices/clientsSlice'
 import { selectUserId } from '../../redux/slices/userSlice'
 import { useSession, signIn, signOut } from 'next-auth/react'
@@ -16,7 +15,7 @@ const ClientsList = () => {
   const [routerCalled, setRouterCalled] = useState(false)
   let router = useRouter()
   const dispatch = useAppDispatch()
-  const user_id = useSelector(selectUserId)
+  const user_id = useAppSelector(selectUserId)
 
   useEffect(() => {
     const redirectIfNoSession = () => {

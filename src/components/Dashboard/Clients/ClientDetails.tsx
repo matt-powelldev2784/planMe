@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { NavBar } from '@/components'
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '@/redux/store/reduxHooks'
 import { selectClients } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
 import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
 
 export const ClientDetails = () => {
-  const clients = useSelector(selectClients)
+  const clients = useAppSelector(selectClients)
 
   let clientItems
   if (clients) {
