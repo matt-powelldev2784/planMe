@@ -55,9 +55,9 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setDummyReducer(state, action) {
-      state.dummyState = action.payload
-    },
+    // setDummyReducer(state, action) {
+    //   state.dummyState = action.payload
+    // },
   },
   // extraReducers: {
   //   [HYDRATE]: (state, action) => {
