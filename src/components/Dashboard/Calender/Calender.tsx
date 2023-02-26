@@ -2,11 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { DayItem } from './DayItem'
 import { CalenderMenu } from './CalenderMenu'
+import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
+import { DateInput } from '@/components/ui/DateInput'
 
 export const Calender = () => {
+  console.log('DateInput', DateInput)
+
   return (
     <CalenderSectionStyled>
-      <CalenderMenu />
+      <PageMenu title="Calander" menuItem={{ menuTitle: 'Date Selector', component: DateInput }} />
       <CalenderGrid>
         <DayItem />
         <DayItem />

@@ -68,6 +68,6 @@ export const clientsSlice = createSlice({
 
 //export const { setDummyReducer } = clientsSlice.actions
 
-export const selectClients = (state: AppState) => state.clients
+export const selectClients = (state: AppState) => state.clients.clientsList
 
 export default clientsSlice.reducer

@@ -1,18 +1,33 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import styled from 'styled-components'
-import { DateInput } from '@/components/ui/DateInput'
 
-export const CalenderMenu = () => {
+interface MenuItem {
+  menuTitle: string
+  component: React.FC | null
+}
+
+interface PageMenuProps {
+  title: string
+  menuItem?: MenuItem
+}
+
+export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItem }) => {
+  let menuComponent: ReactNode
+  if (menuItem) {
+    const { menuTitle, component: Component } = menuItem
+    menuComponent = (
+      <ComponentContainer>
+        <StyledSpan>{menuTitle}</StyledSpan>
+        <MenuContainer>{Component && <Component />}</MenuContainer>
+      </ComponentContainer>
+    )
+  }
+
   return (
     <Fragment>
       <FlexboxStyled>
-        <StyledH2>Dashboard</StyledH2>
-        <DateInputContainer>
-          <StyledSpan>Week Selector</StyledSpan>
-          <DateInput />
-          <StyledSpan>Week Selector</StyledSpan>
-          <DateInput />
-        </DateInputContainer>
+        <StyledH2>{title}</StyledH2>
+        {menuComponent}
       </FlexboxStyled>
       <StyledHr />
     </Fragment>
@@ -49,7 +64,14 @@ const StyledSpan = styled.span`
   padding: 0 0.5rem;
 `
 
-const DateInputContainer = styled.div`
+const ComponentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+`
+
+const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

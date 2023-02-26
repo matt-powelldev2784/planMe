@@ -18,8 +18,6 @@ export default function DashboardPage() {
   const user_id = useSelector(selectUserId)
   const dispatch = useDispatch()
   const clients = useSelector(selectClients)
-  console.log('clients', clients)
-  console.log('session', session)
 
   useEffect(() => {
     const redirectIfNoSession = () => {
