@@ -16,16 +16,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
       }
 
-      if (email) {
-        const { clients } = await prisma.user.findUnique({
+      if (email && !Array.isArray(user_id)) {
+        const clients = await prisma.user.findUnique({
           where: { id: user_id },
           include: { clients: true },
         })
 
+        const clientsList = clients?.clients
+
         res.status(201).json({
           success: true,
           status: 201,
-          data: clients,
+          data: clientsList,
         })
       }
     }

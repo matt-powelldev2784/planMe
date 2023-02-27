@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { ClientDetails } from '@/components'
+import { useSession, signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
+import { getUserId, getUser } from '../../redux/slices/userSlice'
 import { getClients } from '@/redux/slices/clientsSlice'
 import { selectUserId } from '../../redux/slices/userSlice'
-import { useSession, signIn, signOut } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { ClientDetails } from '@/components'
 import LogoutIcon from '../../../public/logout.svg'
-import { getUserId, getUser } from '../../redux/slices/userSlice'
+import SignOutButton from '@/components/ui/SignOutButton'
 
 const ClientsList = () => {
   const { data: session, status } = useSession()
@@ -38,12 +38,7 @@ const ClientsList = () => {
   return (
     <>
       <ClientDetails />
-      <SignOutContainerStyled>
-        <ButtonStyled onClick={() => signOut({ callbackUrl: '/' })}>
-          <Image src={LogoutIcon} width={30} height={30} alt="Lady in canoe on a lake" />
-          <PStyled>Sign Out</PStyled>
-        </ButtonStyled>
-      </SignOutContainerStyled>
+      <SignOutButton />
     </>
   )
 }
