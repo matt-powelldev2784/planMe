@@ -4,21 +4,29 @@ import { authOptions } from '../auth/[...nextauth]'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions)
   const { method } = req
-  const email = session?.user?.email
 
   try {
-    if (email && method === 'GET') {
-      const { user } = session
+    if (method === 'GET') {
+      const session = await getServerSession(req, res, authOptions)
 
-      res.status(201).json({
-        success: true,
-        status: 201,
-        data: {
-          user,
-        },
-      })
+      if (!session) {
+        res
+          .status(403)
+          .json({ success: false, status: 403, errors: [{ msg: 'No Session. User not logged in' }] })
+      }
+
+      if (session) {
+        const { user } = session
+
+        res.status(201).json({
+          success: true,
+          status: 201,
+          data: {
+            user,
+          },
+        })
+      }
     }
   } catch (err: any) {
     console.error(err.message)
