@@ -4,12 +4,17 @@ import { authOptions } from '../auth/[...nextauth]'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions)
   const { method } = req
-  const email = session?.user?.email
 
   try {
-    if (email && method === 'GET') {
+    if (method === 'GET') {
+      const session = await getServerSession(req, res, authOptions)
+      const email = session?.user?.email?.toString()
+
+      if (!email) {
+        res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
+      }
+
       const user_id = await prisma.user.findUnique({
         where: { email },
         select: {
