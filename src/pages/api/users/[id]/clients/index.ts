@@ -1,12 +1,12 @@
 import prisma from 'prisma/db/prismadb'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '../auth/[...nextauth]'
+import { authOptions } from '../../../auth/[...nextauth]'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   const { method } = req
-  const user_id = req.query.clients
+  const user_id = req.query.id
 
   try {
     if (session && method === 'GET') {

@@ -9,6 +9,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import LogoutIcon from '../../../public/logout.svg'
+import { getUserId, getUser } from '../../redux/slices/userSlice'
 
 const ClientsList = () => {
   const { data: session, status } = useSession()
@@ -25,11 +26,14 @@ const ClientsList = () => {
       }
     }
     redirectIfNoSession()
-  }, [session, router, routerCalled, status])
 
-  useEffect(() => {
+    if (!user_id) {
+      dispatch(getUser())
+      dispatch(getUserId())
+    }
+
     if (user_id) dispatch(getClients(user_id))
-  }, [dispatch, user_id])
+  }, [session, router, routerCalled, status, dispatch, user_id])
 
   return (
     <>
