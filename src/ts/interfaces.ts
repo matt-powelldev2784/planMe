@@ -1,14 +1,9 @@
-export interface User {
-  user: {
-    name: String
-    email: String
-    image: String
-    id?: String
-  } | null
-}
-
-export interface apiError {
-  success: Boolean
-  status: number | string
-  errors: []
+export interface Client {
+  id: string
+  name: string
+  company_name: string
+  add1: string
+  add2: string
+  post_code: string
+  user_id: string
 }

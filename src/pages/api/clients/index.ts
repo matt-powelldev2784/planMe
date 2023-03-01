@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (method === 'POST') {
       const session = await getServerSession(req, res, authOptions)
       const { user_id, name, company_name, add1, add2, post_code } = req.body
+      console.log('req.body', req.body)
 
       if (session) {
         const newClient = await prisma.client.create({

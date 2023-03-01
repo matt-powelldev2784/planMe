@@ -5,7 +5,6 @@ import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'nex
 import { getProviders, signIn } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]'
-
 import { TitleCard } from '@/components'
 
 export default function Index({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {

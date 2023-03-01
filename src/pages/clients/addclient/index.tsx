@@ -1,12 +1,12 @@
-import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
-import { Calendar } from '@/components'
+import { useSession } from 'next-auth/react'
+import { AddClient } from '@/components'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
-import { getUserId, getUser, selectUserId } from '../../redux/slices/userSlice'
-import SignOutButton from '../../components/ui/SignOutButton'
+import { getUserId, getUser, selectUserId } from '../../../redux/slices/userSlice'
+import SignOutButton from '../../../components/ui/SignOutButton'
 
-const CalendarPage = () => {
+export const AddClientPage = () => {
   const { data: session, status } = useSession()
   let router = useRouter()
   const user_id = useAppSelector(selectUserId)
@@ -23,14 +23,12 @@ const CalendarPage = () => {
     }
   }, [session, router, status, dispatch, user_id])
 
-  if (session) {
-    return (
-      <>
-        <Calendar />
-        <SignOutButton />
-      </>
-    )
-  }
+  return (
+    <>
+      <AddClient />
+      <SignOutButton />
+    </>
+  )
 }
 
-export default CalendarPage
+export default AddClientPage

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
@@ -8,24 +7,18 @@ import { getUserId, getUser } from '../../redux/slices/userSlice'
 import { getClients } from '@/redux/slices/clientsSlice'
 import { selectUserId } from '../../redux/slices/userSlice'
 import { ClientDetails } from '@/components'
-import LogoutIcon from '../../../public/logout.svg'
 import SignOutButton from '@/components/ui/SignOutButton'
 
-const ClientsList = () => {
+const ClientsListPage = () => {
   const { data: session, status } = useSession()
-  const [routerCalled, setRouterCalled] = useState(false)
   let router = useRouter()
   const dispatch = useAppDispatch()
   const user_id = useAppSelector(selectUserId)
 
   useEffect(() => {
-    const redirectIfNoSession = () => {
-      if (status === 'unauthenticated') {
-        router?.push('/')
-        setRouterCalled(true)
-      }
+    if (status === 'unauthenticated') {
+      router?.push('/')
     }
-    redirectIfNoSession()
 
     if (!user_id) {
       dispatch(getUser())
@@ -33,7 +26,7 @@ const ClientsList = () => {
     }
 
     if (user_id) dispatch(getClients(user_id))
-  }, [session, router, routerCalled, status, dispatch, user_id])
+  }, [session, router, status, dispatch, user_id])
 
   return (
     <>
@@ -43,7 +36,7 @@ const ClientsList = () => {
   )
 }
 
-export default ClientsList
+export default ClientsListPage
 
 const SignOutContainerStyled = styled.footer`
   width: 100vw;

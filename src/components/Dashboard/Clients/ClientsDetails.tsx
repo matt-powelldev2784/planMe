@@ -3,7 +3,7 @@ import { NavBar } from '@/components'
 import { useAppSelector } from '@/redux/store/reduxHooks'
 import { selectClients } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
-import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
+import { PageMenu } from '@/components'
 
 export const ClientDetails = () => {
   const clients = useAppSelector(selectClients)

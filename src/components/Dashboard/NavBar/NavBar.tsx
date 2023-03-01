@@ -6,7 +6,7 @@ export const NavBar = () => {
   return (
     <StyledNavFlexBox>
       <StyledLogoFlexbox>
-        <StyledLogoImg src="./planMe_logoV2.svg" />
+        <StyledLogoImg src="../planMe_logoV2.svg" />
       </StyledLogoFlexbox>
       <StyledLinksFlexBox>
         <NavItems />
