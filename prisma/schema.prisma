@@ -19,6 +19,7 @@ model Client {
    add1             String?
    add2             String?
    post_code        String?
+   email            String?
    
    user_id          String  
    user             User    @relation(fields: [user_id], references: [id])

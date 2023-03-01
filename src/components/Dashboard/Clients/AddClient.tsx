@@ -43,6 +43,7 @@ export const AddClient = () => {
             add1: '',
             add2: '',
             post_code: '',
+            email: '',
           }}
           onSubmit={(values: Client, { setSubmitting }: FormikHelpers<Client>) => {
             // setTimeout(() => {
