@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { AppState } from '../store/store'
 import { HYDRATE } from 'next-redux-wrapper'
-import type { Client } from '@/ts/interfaces'
+import type { Client, ClientMinusId } from '@/ts/interfaces'
 
 export interface ClientsState {
   clientsList: [Client] | []
@@ -22,7 +22,7 @@ export const getClients = createAsyncThunk('clientsState/clients', async (user_i
   }
 })
 
-export const addClient = createAsyncThunk('clientsState/addClient', async (newClient) => {
+export const addClient = createAsyncThunk('clientsState/addClient', async (newClient: ClientMinusId) => {
   try {
     const url = `http://localhost:3000/api/clients`
     const requestOptions = {

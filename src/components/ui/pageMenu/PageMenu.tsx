@@ -44,7 +44,7 @@ const FlexboxStyled = styled.div`
   width: 100vw;
   min-width: 310px;
   padding: 0 2rem;
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   @media only screen and (max-width: 441px) {
     flex-direction: column;
     margin: 0.5rem auto;
