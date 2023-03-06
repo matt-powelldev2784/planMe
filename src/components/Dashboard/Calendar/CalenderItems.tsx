@@ -1,14 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { DayItem } from './DayItem'
-import { CalenderMenu } from '../../../../_trash/CalenderMenu'
-import { PageMenu } from '@/components/ui/pageMenu/PageMenu'
-import { DateInput } from '@/components/ui/DateInput'
 
-export const Calender = () => {
+export const CalenderItems = () => {
   return (
     <StyledCalenderSection>
-      <PageMenu title="Calander" menuItem={{ menuTitle: 'Date Selector', component: DateInput }} />
       <StyledCalenderGrid>
         <DayItem />
         <DayItem />
