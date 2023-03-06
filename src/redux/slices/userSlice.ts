@@ -79,11 +79,6 @@ export const userSlice = createSlice({
   },
 })
 
-//export const { setDummyReducer } = userSlice.actions
-
-// export const selectUserState = (state: AppState) => state.user
-// export const selectUserId = (state: AppState) => state.user.user_id
-
 export const selectUsertSlice = (state: AppState) => state.user
 
 export default userSlice.reducer
