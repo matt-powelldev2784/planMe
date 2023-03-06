@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
-import { getUserId, getUser } from '../../redux/slices/userSlice'
-import { getClients } from '@/redux/slices/clientsSlice'
-import { selectUserId } from '../../redux/slices/userSlice'
-import { ClientDetails } from '@/components'
+import { getUserId, getUser } from '../../../redux/slices/userSlice'
+import { getClients, getClient } from '@/redux/slices/clientsSlice'
+import { selectUserId } from '../../../redux/slices/userSlice'
+import { ClientsList } from '@/components'
 import SignOutButton from '@/components/ui/SignOutButton'
 
 const ClientsListPage = () => {
@@ -25,12 +25,15 @@ const ClientsListPage = () => {
       dispatch(getUserId())
     }
 
-    if (user_id) dispatch(getClients(user_id))
+    if (user_id) {
+      dispatch(getClients(user_id))
+      dispatch(getClient(user_id))
+    }
   }, [session, router, status, dispatch, user_id])
 
   return (
     <>
-      <ClientDetails />
+      <ClientsList />
       <SignOutButton />
     </>
   )

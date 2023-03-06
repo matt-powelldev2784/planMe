@@ -5,15 +5,31 @@ import type { Client, ClientMinusId } from '@/ts/interfaces'
 
 export interface ClientsState {
   clientsList: [Client] | []
+  singleClientId: string | null
+  singleClient: [Client] | []
 }
 
 const initialState: ClientsState = {
   clientsList: [],
+  singleClientId: null,
+  singleClient: [],
 }
 
-export const getClients = createAsyncThunk('clientsState/clients', async (user_id: string) => {
+export const getClients = createAsyncThunk('clientsState/clients', async (user_id) => {
   try {
-    const url = `http://localhost:3000/api/users/${user_id}/clients`
+    const url = `http://localhost:3000/api/users/${user_id}/clients_list`
+    const res = await fetch(url)
+    const { data } = await res.json()
+    return data
+  } catch (err) {
+    console.log('err', err)
+  }
+})
+
+export const getClient = createAsyncThunk('clientsState/client', async (user_id, client_id) => {
+  try {
+    console.log('user_id, client_id', user_id, client_id)
+    const url = `http://localhost:3000/api/users/${user_id}/${client_id}`
     const res = await fetch(url)
     const { data } = await res.json()
     return data
@@ -32,6 +48,7 @@ export const addClient = createAsyncThunk('clientsState/addClient', async (newCl
     }
     const res = await fetch(url, requestOptions)
     const { data } = await res.json()
+
     return data
   } catch (err) {
     console.log('err', err)
@@ -67,6 +84,27 @@ export const clientsSlice = createSlice({
       .addCase(getClients.rejected, (state, { error }: any) => {
         state.clientsList = []
       })
+      //---------------------------------------------------------------------
+      .addCase(getClient.pending, (state) => {
+        state.singleClient = []
+      })
+      .addCase(getClient.fulfilled, (state, { payload }) => {
+        state.singleClient = payload
+      })
+      .addCase(getClient.rejected, (state, { error }: any) => {
+        state.singleClient = []
+      })
+      //---------------------------------------------------------------------
+      .addCase(addClient.pending, (state) => {
+        state.singleClientId = null
+      })
+      .addCase(addClient.fulfilled, (state, { payload }) => {
+        const { id } = payload
+        state.singleClientId = id
+      })
+      .addCase(addClient.rejected, (state, { error }: any) => {
+        state.singleClientId = null
+      })
     //---------------------------------------------------------------------
   },
 })
@@ -74,5 +112,7 @@ export const clientsSlice = createSlice({
 //export const { setDummyReducer } = clientsSlice.actions
 
 export const selectClients = (state: AppState) => state.clients.clientsList
+export const selectClient = (state: AppState) => state.clients.singleClient
+export const selectSingleClientId = (state: AppState) => state.clients.singleClientId
 
 export default clientsSlice.reducer

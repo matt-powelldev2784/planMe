@@ -2,13 +2,15 @@ import styled from 'styled-components'
 import * as Yup from 'yup'
 import { useAppSelector, useAppDispatch } from '@/redux/store/reduxHooks'
 import { selectUserId } from '../../../redux/slices/userSlice'
-import { addClient } from '@/redux/slices/clientsSlice'
+import { addClient, selectSingleClientId } from '@/redux/slices/clientsSlice'
 import { NavBar, PageMenu } from '@/components'
 import { useFormik } from 'formik'
-import type { Client, ClientMinusIdAndUserId, ClientMinusId } from '@/ts/interfaces'
+import type { ClientMinusIdAndUserId, ClientMinusId } from '@/ts/interfaces'
 
 export const AddClient = () => {
   const user_id = useAppSelector(selectUserId)
+  const singleClientId = useAppSelector(selectSingleClientId)
+
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -32,6 +34,8 @@ export const AddClient = () => {
     onSubmit: (values: ClientMinusIdAndUserId) => {
       const newClient: ClientMinusId = { user_id, ...values }
       dispatch(addClient(newClient))
+
+      window.location.href = `/client/singleclient`
     },
   })
 

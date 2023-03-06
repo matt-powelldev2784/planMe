@@ -13,7 +13,7 @@ export const ClientItem: React.FC<ClientItemProps> = ({ name, company_name, add1
   return (
     <StyledClientContainer>
       <StyledButtonFlexbox>
-        <StyledImg src="./plus.svg"></StyledImg>
+        <StyledImg src="../plus.svg"></StyledImg>
       </StyledButtonFlexbox>
       <StyledClientFlexbox>
         <StyledPrimaryField>{name}</StyledPrimaryField>

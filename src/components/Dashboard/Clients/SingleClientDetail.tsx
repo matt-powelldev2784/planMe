@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { NavBar } from '@/components'
 import { useAppSelector } from '@/redux/store/reduxHooks'
-import { selectClients } from '@/redux/slices/clientsSlice'
+import { selectClient } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
 import { PageMenu } from '@/components'
 
-export const ClientDetails = () => {
-  const clients = useAppSelector(selectClients)
+export const SingleClientDetail = () => {
+  const clients = useAppSelector(selectClient)
 
   let clientItems
   if (clients) {
@@ -28,7 +28,7 @@ export const ClientDetails = () => {
   return (
     <StyledDashboardDiv>
       <NavBar />
-      <PageMenu title="Clients List" />
+      <PageMenu title="Single Client Detail" />
       <StyledClientsFlexbox>{clientItems}</StyledClientsFlexbox>
     </StyledDashboardDiv>
   )
