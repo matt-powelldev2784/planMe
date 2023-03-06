@@ -9,8 +9,6 @@ import type { ClientMinusIdAndUserId, ClientMinusId } from '@/ts/interfaces'
 
 export const AddClient = () => {
   const user_id = useAppSelector(selectUserId)
-  const singleClientId = useAppSelector(selectSingleClientId)
-
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
@@ -31,11 +29,12 @@ export const AddClient = () => {
       email: Yup.string().email('Please input valid email address'),
     }),
 
-    onSubmit: (values: ClientMinusIdAndUserId) => {
+    onSubmit: async (values: ClientMinusIdAndUserId) => {
       const newClient: ClientMinusId = { user_id, ...values }
-      dispatch(addClient(newClient))
-
-      window.location.href = `/client/singleclient`
+      const { payload } = await dispatch(addClient(newClient))
+      const singleClientId = payload.id
+      sessionStorage.setItem('singleClientId', singleClientId)
+      window.location.href = `/clients/singleclient`
     },
   })
 
@@ -51,7 +50,7 @@ export const AddClient = () => {
 
           <StyledInputConatiner>
             <StyledLabel htmlFor="name">Name</StyledLabel>
-            {formik.touched.company_name ? <StyledErrorP>{formik.errors.company_name}</StyledErrorP> : null}
+            {formik.touched.name ? <StyledErrorP>{formik.errors.name}</StyledErrorP> : null}
             <StyledInput
               id="name"
               name="name"

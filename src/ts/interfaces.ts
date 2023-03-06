@@ -24,3 +24,8 @@ export interface ClientMinusIdAndUserId {
   add2: string
   post_code: string
 }
+
+export interface UserAndClientId {
+  user_id: string
+  client_id: string
+}

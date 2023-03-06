@@ -4,23 +4,25 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../../redux/slices/userSlice'
-import { getClient, selectSingleClientId } from '@/redux/slices/clientsSlice'
+import { getClient, selectSingleClientId, selectClient, setSingleClientId } from '@/redux/slices/clientsSlice'
 import { selectUserId } from '../../../redux/slices/userSlice'
 import { SingleClientDetail } from '@/components'
 import SignOutButton from '@/components/ui/SignOutButton'
 
-const ClientsListPage = () => {
+const SingleClientPage = () => {
   const { data: session, status } = useSession()
   let router = useRouter()
   const dispatch = useAppDispatch()
   const user_id = useAppSelector(selectUserId)
   const singleClientId = useAppSelector(selectSingleClientId)
-  console.log('selectSingleClientId', selectSingleClientId)
 
   useEffect(() => {
     if (status === 'unauthenticated') {
       router?.push('/')
     }
+
+    const singleClientIdFromSessionStorage = sessionStorage.getItem('setSingleClientId')
+    dispatch(setSingleClientId(singleClientIdFromSessionStorage))
 
     if (!user_id) {
       dispatch(getUser())
@@ -28,7 +30,7 @@ const ClientsListPage = () => {
     }
 
     if (user_id && singleClientId) {
-      dispatch(getClient(user_id, singleClientId))
+      dispatch(getClient({ user_id: user_id, client_id: singleClientId }))
     }
   }, [session, router, status, dispatch, user_id, singleClientId])
 
@@ -40,7 +42,7 @@ const ClientsListPage = () => {
   )
 }
 
-export default ClientsListPage
+export default SingleClientPage
 
 const SignOutContainerStyled = styled.footer`
   width: 100vw;

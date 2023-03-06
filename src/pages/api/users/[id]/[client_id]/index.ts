@@ -11,6 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const session = await getServerSession(req, res, authOptions)
       const email = session?.user?.email
       const user_id = req.query.id?.toString()
+      const client_id = req.query.client_id?.toString()
 
       if (!email) {
         res.status(403).json({ success: false, status: 403, errors: [{ msg: 'User not found' }] })
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const user = await prisma.user.findUnique({
         where: { id: user_id },
-        select: { clients: { where: { id: 'clergxuh70007pg3bin8gc8yy' } } },
+        select: { clients: { where: { id: client_id } } },
       })
 
       const clientsList = user?.clients

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { AppState } from '../store/store'
 import { HYDRATE } from 'next-redux-wrapper'
-import type { Client, ClientMinusId } from '@/ts/interfaces'
+import type { Client, ClientMinusId, UserAndClientId } from '@/ts/interfaces'
 
 export interface ClientsState {
   clientsList: [Client] | []
@@ -26,17 +26,22 @@ export const getClients = createAsyncThunk('clientsState/clients', async (user_i
   }
 })
 
-export const getClient = createAsyncThunk('clientsState/client', async (user_id, client_id) => {
-  try {
-    console.log('user_id, client_id', user_id, client_id)
-    const url = `http://localhost:3000/api/users/${user_id}/${client_id}`
-    const res = await fetch(url)
-    const { data } = await res.json()
-    return data
-  } catch (err) {
-    console.log('err', err)
+export const getClient = createAsyncThunk(
+  'clientsState/client',
+  async ({ user_id, client_id }: UserAndClientId) => {
+    try {
+      console.log('user_id******************************', user_id)
+      console.log('client_id', client_id)
+      const url = `http://localhost:3000/api/users/${user_id}/${client_id}`
+      const res = await fetch(url)
+      const { data } = await res.json()
+
+      return data
+    } catch (err) {
+      console.log('err', err)
+    }
   }
-})
+)
 
 export const addClient = createAsyncThunk('clientsState/addClient', async (newClient: ClientMinusId) => {
   try {
@@ -48,6 +53,7 @@ export const addClient = createAsyncThunk('clientsState/addClient', async (newCl
     }
     const res = await fetch(url, requestOptions)
     const { data } = await res.json()
+    console.log('data', data)
 
     return data
   } catch (err) {
@@ -60,9 +66,9 @@ export const clientsSlice = createSlice({
   name: 'clients',
   initialState,
   reducers: {
-    // setDummyReducer(state, action) {
-    //   state.dummyState = action.payload
-    // },
+    setSingleClientId(state, action) {
+      state.singleClientId = sessionStorage.getItem('singleClientId')
+    },
   },
   // extraReducers: {
   //   [HYDRATE]: (state, action) => {
@@ -101,6 +107,7 @@ export const clientsSlice = createSlice({
       .addCase(addClient.fulfilled, (state, { payload }) => {
         const { id } = payload
         state.singleClientId = id
+        sessionStorage.setItem('singleClientId', id)
       })
       .addCase(addClient.rejected, (state, { error }: any) => {
         state.singleClientId = null
@@ -109,10 +116,12 @@ export const clientsSlice = createSlice({
   },
 })
 
-//export const { setDummyReducer } = clientsSlice.actions
+export const { setSingleClientId } = clientsSlice.actions
 
 export const selectClients = (state: AppState) => state.clients.clientsList
 export const selectClient = (state: AppState) => state.clients.singleClient
 export const selectSingleClientId = (state: AppState) => state.clients.singleClientId
+
+export const selectClientSlice = (state: AppState) => state.clients
 
 export default clientsSlice.reducer
