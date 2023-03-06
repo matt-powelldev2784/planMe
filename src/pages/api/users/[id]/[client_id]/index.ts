@@ -22,12 +22,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         select: { clients: { where: { id: client_id } } },
       })
 
-      const clientsList = user?.clients
+      const client = user?.clients
 
       res.status(201).json({
         success: true,
         status: 201,
-        data: clientsList,
+        data: client,
       })
     }
   } catch (err: any) {
