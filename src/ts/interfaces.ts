@@ -29,3 +29,7 @@ export interface UserAndClientId {
   user_id: string
   client_id: string
 }
+
+export interface UserId {
+  user_id: string
+}

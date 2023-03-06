@@ -4,7 +4,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../../redux/slices/userSlice'
-import { getClients, getClient } from '@/redux/slices/clientsSlice'
+import { getClients } from '@/redux/slices/clientsSlice'
 import { selectUserId } from '../../../redux/slices/userSlice'
 import { ClientsList } from '@/components'
 import SignOutButton from '@/components/ui/SignOutButton'
@@ -26,8 +26,7 @@ const ClientsListPage = () => {
     }
 
     if (user_id) {
-      dispatch(getClients(user_id))
-      dispatch(getClient(user_id))
+      dispatch(getClients({ user_id }))
     }
   }, [session, router, status, dispatch, user_id])
 
