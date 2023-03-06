@@ -30,12 +30,9 @@ export const getClient = createAsyncThunk(
   'clientsState/client',
   async ({ user_id, client_id }: UserAndClientId) => {
     try {
-      console.log('user_id******************************', user_id)
-      console.log('client_id', client_id)
       const url = `http://localhost:3000/api/users/${user_id}/${client_id}`
       const res = await fetch(url)
       const { data } = await res.json()
-
       return data
     } catch (err) {
       console.log('err', err)
@@ -45,7 +42,8 @@ export const getClient = createAsyncThunk(
 
 export const addClient = createAsyncThunk('clientsState/addClient', async (newClient: ClientMinusId) => {
   try {
-    const url = `http://localhost:3000/api/clients`
+    const { user_id } = newClient
+    const url = `http://localhost:3000/api/users/${user_id}/clients`
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,15 +51,12 @@ export const addClient = createAsyncThunk('clientsState/addClient', async (newCl
     }
     const res = await fetch(url, requestOptions)
     const { data } = await res.json()
-    console.log('data', data)
-
     return data
   } catch (err) {
     console.log('err', err)
   }
 })
 
-// Actual Slice
 export const clientsSlice = createSlice({
   name: 'clients',
   initialState,
