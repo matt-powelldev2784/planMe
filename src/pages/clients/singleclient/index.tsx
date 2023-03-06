@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
 import { getUserId, getUser } from '../../../redux/slices/userSlice'
-import { getClient, selectSingleClientId, selectClient, setSingleClientId } from '@/redux/slices/clientsSlice'
-import { selectUserId } from '../../../redux/slices/userSlice'
+import { getClient, selectClientSlice, setSingleClientId } from '@/redux/slices/clientsSlice'
+import { selectUsertSlice } from '../../../redux/slices/userSlice'
 import { SingleClientDetail } from '@/components'
 import SignOutButton from '@/components/ui/SignOutButton'
 
@@ -13,8 +13,8 @@ const SingleClientPage = () => {
   const { data: session, status } = useSession()
   let router = useRouter()
   const dispatch = useAppDispatch()
-  const user_id = useAppSelector(selectUserId)
-  const singleClientId = useAppSelector(selectSingleClientId)
+  const { user_id } = useAppSelector(selectUsertSlice)
+  const { singleClientId } = useAppSelector(selectClientSlice)
 
   useEffect(() => {
     if (status === 'unauthenticated') {

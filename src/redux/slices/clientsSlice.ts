@@ -113,10 +113,6 @@ export const clientsSlice = createSlice({
 
 export const { setSingleClientId } = clientsSlice.actions
 
-export const selectClients = (state: AppState) => state.clients.clientsList
-export const selectClient = (state: AppState) => state.clients.singleClient
-export const selectSingleClientId = (state: AppState) => state.clients.singleClientId
-
 export const selectClientSlice = (state: AppState) => state.clients
 
 export default clientsSlice.reducer

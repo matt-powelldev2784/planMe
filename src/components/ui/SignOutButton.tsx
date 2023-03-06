@@ -1,4 +1,4 @@
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import styled from 'styled-components'
 import Image from 'next/image'
 import LogoutIcon from '../../../public/logout.svg'

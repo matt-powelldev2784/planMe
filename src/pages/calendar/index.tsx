@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react'
 import { Calendar } from '@/components'
 import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks'
-import { getUserId, getUser, selectUserId } from '../../redux/slices/userSlice'
+import { getUserId, getUser, selectUsertSlice } from '../../redux/slices/userSlice'
 import SignOutButton from '../../components/ui/SignOutButton'
 
 const CalendarPage = () => {
   const { data: session, status } = useSession()
   let router = useRouter()
-  const user_id = useAppSelector(selectUserId)
+  const { user_id } = useAppSelector(selectUsertSlice)
   const dispatch = useAppDispatch()
 
   useEffect(() => {

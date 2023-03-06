@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 import { NavBar } from '@/components'
 import { useAppSelector } from '@/redux/store/reduxHooks'
-import { selectClient } from '@/redux/slices/clientsSlice'
+import { selectClientSlice } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
 import { PageMenu } from '@/components'
 
 export const SingleClientDetail = () => {
-  const clients = useAppSelector(selectClient)
+  const { singleClient } = useAppSelector(selectClientSlice)
 
   let clientItems
-  if (clients) {
-    clientItems = clients.map((client) => {
+  if (singleClient) {
+    clientItems = singleClient.map((client) => {
       const { id, name, company_name, add1, add2, post_code } = client
       return (
         <ClientItem

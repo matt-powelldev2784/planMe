@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import * as Yup from 'yup'
 import { useAppSelector, useAppDispatch } from '@/redux/store/reduxHooks'
-import { selectUserId } from '../../../redux/slices/userSlice'
-import { addClient, selectSingleClientId } from '@/redux/slices/clientsSlice'
+import { selectUsertSlice } from '../../../redux/slices/userSlice'
+import { addClient } from '@/redux/slices/clientsSlice'
 import { NavBar, PageMenu } from '@/components'
 import { useFormik } from 'formik'
 import type { ClientMinusIdAndUserId, ClientMinusId } from '@/ts/interfaces'
 
 export const AddClient = () => {
-  const user_id = useAppSelector(selectUserId)
+  const { user_id } = useAppSelector(selectUsertSlice)
   const dispatch = useAppDispatch()
 
   const formik = useFormik({
