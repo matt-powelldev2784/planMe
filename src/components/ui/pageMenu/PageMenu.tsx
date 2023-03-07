@@ -11,16 +11,28 @@ interface PageMenuProps {
   menuItem?: MenuItem
 }
 
-export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItem }) => {
+export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItems }) => {
   let menuComponent: ReactNode
-  if (menuItem) {
-    const { menuTitle, component: Component } = menuItem
-    menuComponent = (
-      <ComponentContainer>
-        <StyledSpan>{menuTitle}</StyledSpan>
-        <MenuContainer>{Component && <Component />}</MenuContainer>
-      </ComponentContainer>
-    )
+  if (menuItems) {
+    menuComponent = menuItems.map((menuItem, i) => {
+      const { menuTitle } = menuItem
+      const Component = menuItem.component
+
+      return (
+        <ComponentContainer key={i}>
+          <StyledSpan>{menuTitle}</StyledSpan>
+          <MenuContainer>
+            <Component />
+          </MenuContainer>
+        </ComponentContainer>
+      )
+    })
+
+    // const componentsArray = components.map((component, i) => {
+    //   return <component key={i} />
+    // })
+
+    // console.log('componentsArray', componentsArray)
   }
 
   return (
