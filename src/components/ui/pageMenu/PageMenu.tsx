@@ -13,6 +13,7 @@ interface PageMenuProps {
 
 export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItems }) => {
   let menuComponent: ReactNode
+
   if (menuItems) {
     menuComponent = menuItems.map((menuItem, i) => {
       const { menuTitle } = menuItem
@@ -21,34 +22,70 @@ export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItems }) => {
       return (
         <ComponentContainer key={i}>
           <StyledSpan>{menuTitle}</StyledSpan>
-          <MenuContainer>
-            <Component />
-          </MenuContainer>
+          <MenuContainer>{Component && <Component />}</MenuContainer>
         </ComponentContainer>
       )
     })
-
-    // const componentsArray = components.map((component, i) => {
-    //   return <component key={i} />
-    // })
-
-    // console.log('componentsArray', componentsArray)
   }
 
   return (
-    <Fragment>
-      <FlexboxStyled>
+    <>
+      <StyledMenuFlexbox>
         <StyledH2>{title}</StyledH2>
-        {menuComponent}
-      </FlexboxStyled>
+        <StyledMenuItemsFlexbox>{menuComponent}</StyledMenuItemsFlexbox>
+      </StyledMenuFlexbox>
       <StyledHr />
-    </Fragment>
+    </>
   )
 }
 
+const StyledMenuFlexbox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  @media only screen and (max-width: 992px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+`
+
 const StyledH2 = styled.h2`
+  display: inline-block;
   font-size: 2rem;
+  min-width: 310px;
+  margin-left: 1rem;
   color: var(--primary-text);
+  line-height: 2.2rem;
+  overflow-y: hidden;
+  @media only screen and (max-width: 992px) {
+    text-align: center;
+    margin-left: 0;
+  }
+`
+
+const StyledMenuItemsFlexbox = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-right: 2.5rem;
+  @media only screen and (max-width: 992px) {
+    width: 95vw;
+    margin-right: 0rem;
+  }
+  @media only screen and (max-width: 441px) {
+    margin: 0.5rem auto;
+    padding: unset;
+  }
 `
 
 const StyledSpan = styled.span`
@@ -62,7 +99,8 @@ const ComponentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  min-width: fit-content;
 `
 
 const MenuContainer = styled.div`
@@ -73,7 +111,8 @@ const MenuContainer = styled.div`
 `
 
 const StyledHr = styled.div`
+  display: block;
   width: 98vw;
-  margin: 0 auto;
+  margin: 0rem auto;
   border-top: 0.1px solid var(--primary-text);
 `

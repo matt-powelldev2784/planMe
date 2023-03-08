@@ -7,6 +7,8 @@ export const Calendar = () => {
   const menuItems = [
     { menuTitle: 'Date Input', component: DateInput },
     { menuTitle: 'Date Input', component: DateInput },
+    { menuTitle: 'Date Input', component: DateInput },
+    { menuTitle: 'Date Input', component: DateInput },
   ]
   // const menuItems = menuComponents.map((Component, i) => {
   //   return <Component key={i} />
@@ -15,7 +17,7 @@ export const Calendar = () => {
   return (
     <StyledDashboardDiv>
       <NavBar />
-      <PageMenu title="Calander" menuItems={menuItems} />
+      <PageMenu title="Calender" menuItems={menuItems} />
       <CalenderItems />
     </StyledDashboardDiv>
   )

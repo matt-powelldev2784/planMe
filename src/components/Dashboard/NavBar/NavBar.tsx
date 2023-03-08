@@ -61,7 +61,7 @@ const StyledLinksFlexBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 3rem;
-  margin-right: 5rem;
+  margin-right: 2.5rem;
   @media only screen and (max-width: 992px) {
     width: 100%;
     justify-content: center;
