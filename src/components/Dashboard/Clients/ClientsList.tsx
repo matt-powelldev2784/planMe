@@ -8,22 +8,19 @@ import { PageMenu } from '@/components'
 export const ClientsList = () => {
   const { clientsList } = useAppSelector(selectClientSlice)
 
-  let clientItems
-  if (clientsList) {
-    clientItems = clientsList.map((client) => {
-      const { id, name, company_name, add1, add2, post_code } = client
-      return (
-        <ClientItem
-          key={id}
-          name={name}
-          company_name={company_name}
-          add1={add1}
-          add2={add2}
-          post_code={post_code}
-        />
-      )
-    })
-  }
+  const clientItems = clientsList?.map((client) => {
+    const { id, name, company_name, add1, add2, post_code } = client
+    return (
+      <ClientItem
+        key={id}
+        name={name}
+        company_name={company_name}
+        add1={add1}
+        add2={add2}
+        post_code={post_code}
+      />
+    )
+  })
 
   return (
     <StyledDashboardDiv>

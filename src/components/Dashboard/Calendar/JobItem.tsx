@@ -17,7 +17,7 @@ const StyledJobItemFlexbox = styled.li`
   position: relative;
   height: 4rem;
   display: flex;
-  justify-content: center;
+
   align-items: center;
   margin: 0.25rem 0.25rem;
   padding: 0 0.5rem;
@@ -37,7 +37,7 @@ const StyledP = styled.p`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+
   font-size: 0.9rem;
   font-weight: 400;
   width: 100%;

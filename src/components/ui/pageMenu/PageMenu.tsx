@@ -1,38 +1,42 @@
 import React, { Fragment, ReactNode } from 'react'
 import styled from 'styled-components'
 
-interface MenuItem {
+interface reactMenuComponents {
   menuTitle: string
-  component: React.FC | null
+  component: React.FC<{ image?: string }>
+  onClick: () => any
+  image?: string
 }
 
 interface PageMenuProps {
   title: string
-  menuItems?: MenuItem[]
+  reactMenuComponents?: reactMenuComponents[]
 }
 
-export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItems }) => {
-  let menuComponent: ReactNode
+export const PageMenu: React.FC<PageMenuProps> = ({
+  title,
+  reactMenuComponents,
+}) => {
+  const menuComponents: ReactNode = reactMenuComponents?.map((menuItem, i) => {
+    const { menuTitle, onClick, image } = menuItem
+    const Component = menuItem.component
 
-  if (menuItems) {
-    menuComponent = menuItems.map((menuItem, i) => {
-      const { menuTitle } = menuItem
-      const Component = menuItem.component
-
-      return (
-        <ComponentContainer key={i}>
-          <StyledSpan>{menuTitle}</StyledSpan>
-          <MenuContainer>{Component && <Component />}</MenuContainer>
-        </ComponentContainer>
-      )
-    })
-  }
+    return (
+      <ComponentContainer key={i} onClick={onClick}>
+        <StyledSpan>{menuTitle}</StyledSpan>
+        <MenuContainer>
+          {image && Component && <Component image={image} />}
+          {!image && Component && <Component />}
+        </MenuContainer>
+      </ComponentContainer>
+    )
+  })
 
   return (
     <>
       <StyledMenuFlexbox>
         <StyledH2>{title}</StyledH2>
-        <StyledMenuItemsFlexbox>{menuComponent}</StyledMenuItemsFlexbox>
+        <StyledMenuItemsFlexbox>{menuComponents}</StyledMenuItemsFlexbox>
       </StyledMenuFlexbox>
       <StyledHr />
     </>
@@ -42,7 +46,6 @@ export const PageMenu: React.FC<PageMenuProps> = ({ title, menuItems }) => {
 const StyledMenuFlexbox = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
@@ -50,7 +53,6 @@ const StyledMenuFlexbox = styled.div`
   @media only screen and (max-width: 992px) {
     flex-direction: column-reverse;
     justify-content: center;
-    align-items: center;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
