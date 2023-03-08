@@ -74,7 +74,7 @@ const StyledH2 = styled.h2`
 `
 
 const StyledMenuItemsFlexbox = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -83,11 +83,13 @@ const StyledMenuItemsFlexbox = styled.div`
   margin-right: 2.5rem;
   @media only screen and (max-width: 992px) {
     width: 95vw;
-    margin-right: 0rem;
-  }
-  @media only screen and (max-width: 441px) {
+    margin-right: 0;
     margin: 0.5rem auto;
-    padding: unset;
+  }
+  @media only screen and (max-width: 451px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 310px;
   }
 `
 
