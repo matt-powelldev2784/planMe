@@ -1,46 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavBar, CalenderItems, PageMenu } from '@/components'
-import { DateInput } from '@/components/ui/DateInput'
-import { MenuButton } from '@/components/ui/MenuButton'
+import { menuComponents } from './MenuCompnents'
 
 export const Calendar = () => {
-  const reactMenuComponents = [
-    {
-      menuTitle: 'Date Input',
-      component: DateInput,
-      onClick: () => {
-        console.log('clicked')
-      },
-    },
-    {
-      menuTitle: 'Date Input',
-      component: DateInput,
-      onClick: () => {
-        console.log('clicked')
-      },
-    },
-    {
-      menuTitle: 'Date Input',
-      component: DateInput,
-      onClick: () => {
-        console.log('clicked')
-      },
-    },
-    {
-      menuTitle: 'Menu Button',
-      component: MenuButton,
-      onClick: () => {
-        console.log('clicked')
-      },
-      image: './clock.svg',
-    },
-  ]
-
   return (
     <StyledDashboardDiv>
       <NavBar />
-      <PageMenu title="Calender" reactMenuComponents={reactMenuComponents} />
+      <PageMenu title="Calender" reactMenuComponents={menuComponents} />
       <CalenderItems />
     </StyledDashboardDiv>
   )

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 interface reactMenuComponents {
   menuTitle: string
-  component: React.FC<{ image?: string }>
+  component: React.FC<{ image?: string }> | null
   onClick: () => any
   image?: string
 }
@@ -17,20 +17,22 @@ export const PageMenu: React.FC<PageMenuProps> = ({
   title,
   reactMenuComponents,
 }) => {
-  const menuComponents: ReactNode = reactMenuComponents?.map((menuItem, i) => {
-    const { menuTitle, onClick, image } = menuItem
-    const Component = menuItem.component
+  const menuComponents: ReactNode = reactMenuComponents?.map(
+    (menuCompeent, i) => {
+      const { menuTitle, onClick, image } = menuCompeent
+      const Component = menuCompeent.component
 
-    return (
-      <ComponentContainer key={i} onClick={onClick}>
-        <StyledSpan>{menuTitle}</StyledSpan>
-        <MenuContainer>
-          {image && Component && <Component image={image} />}
-          {!image && Component && <Component />}
-        </MenuContainer>
-      </ComponentContainer>
-    )
-  })
+      return (
+        <ComponentContainer key={i} onClick={onClick}>
+          <StyledSpan>{menuTitle}</StyledSpan>
+          <MenuContainer>
+            {image && Component && <Component image={image} />}
+            {!image && Component && <Component />}
+          </MenuContainer>
+        </ComponentContainer>
+      )
+    }
+  )
 
   return (
     <>
