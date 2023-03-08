@@ -66,7 +66,6 @@ const StyledH2 = styled.h2`
   min-width: 310px;
   margin-left: 1rem;
   color: var(--primary-text);
-  line-height: 2.2rem;
   overflow-y: hidden;
   @media only screen and (max-width: 992px) {
     text-align: center;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavBar, CalenderItems, PageMenu } from '@/components'
-import { menuComponents } from './MenuCompnents'
+import { menuComponents } from './menuCompnents'
 
 export const Calendar = () => {
   return (

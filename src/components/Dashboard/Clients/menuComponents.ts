@@ -8,7 +8,7 @@ export const menuComponents = [
     onClick: () => {
       window.location.href = `/clients/addclient`
     },
-    image: '../clock.svg',
+    image: '../add_client.svg',
   },
   {
     menuTitle: 'Single Client Detail',
@@ -16,7 +16,7 @@ export const menuComponents = [
     onClick: () => {
       window.location.href = `/clients/singleclient`
     },
-    image: '../clock.svg',
+    image: '../single_client.svg',
   },
   {
     menuTitle: 'Client List',
@@ -24,6 +24,6 @@ export const menuComponents = [
     onClick: () => {
       window.location.href = `/clients/list`
     },
-    image: '../clock.svg',
+    image: '../client_list.svg',
   },
 ]
