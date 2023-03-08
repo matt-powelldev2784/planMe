@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { NavBar } from '@/components'
 import { useAppSelector } from '@/redux/store/reduxHooks'
 import { selectClientSlice } from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
-import { PageMenu } from '@/components'
+import { PageMenu, NavBar } from '@/components'
+import { menuComponents } from './menuComponents'
 
 export const ClientsList = () => {
   const { clientsList } = useAppSelector(selectClientSlice)
@@ -25,7 +25,8 @@ export const ClientsList = () => {
   return (
     <StyledDashboardDiv>
       <NavBar />
-      <PageMenu title="Clients List" />
+      <PageMenu title="Clients List" reactMenuComponents={menuComponents} />
+
       <StyledClientsFlexbox>{clientItems}</StyledClientsFlexbox>
     </StyledDashboardDiv>
   )

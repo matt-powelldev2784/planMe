@@ -6,6 +6,7 @@ import { addClient } from '@/redux/slices/clientsSlice'
 import { NavBar, PageMenu } from '@/components'
 import { useFormik } from 'formik'
 import type { ClientMinusIdAndUserId, ClientMinusId } from '@/ts/interfaces'
+import { menuComponents } from './menuComponents'
 
 export const AddClient = () => {
   const { user_id } = useAppSelector(selectUsertSlice)
@@ -21,8 +22,12 @@ export const AddClient = () => {
       email: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().max(200, 'Name must be 200 characters of less').required('required'),
-      company_name: Yup.string().max(200, 'Company Name Must be 200 characters of less').required('required'),
+      name: Yup.string()
+        .max(200, 'Name must be 200 characters of less')
+        .required('required'),
+      company_name: Yup.string()
+        .max(200, 'Company Name Must be 200 characters of less')
+        .required('required'),
       add1: Yup.string().max(400, 'Address1 must be 400 characters of less'),
       add2: Yup.string().max(400, 'Address1 must be 400 characters of less'),
       post_code: Yup.string(),
@@ -41,7 +46,7 @@ export const AddClient = () => {
   return (
     <StyledDashboardDiv>
       <NavBar />
-      <PageMenu title="Add Client" />
+      <PageMenu title="Add Client" reactMenuComponents={menuComponents} />
 
       <StyledFormWrapper>
         <StyledFormContainer onSubmit={formik.handleSubmit}>
@@ -50,7 +55,9 @@ export const AddClient = () => {
 
           <StyledInputConatiner>
             <StyledLabel htmlFor="name">Name</StyledLabel>
-            {formik.touched.name ? <StyledErrorP>{formik.errors.name}</StyledErrorP> : null}
+            {formik.touched.name ? (
+              <StyledErrorP>{formik.errors.name}</StyledErrorP>
+            ) : null}
             <StyledInput
               id="name"
               name="name"
@@ -63,7 +70,9 @@ export const AddClient = () => {
 
           <StyledInputConatiner>
             <StyledLabel htmlFor="company_name">Company Name</StyledLabel>
-            {formik.touched.company_name ? <StyledErrorP>{formik.errors.company_name}</StyledErrorP> : null}
+            {formik.touched.company_name ? (
+              <StyledErrorP>{formik.errors.company_name}</StyledErrorP>
+            ) : null}
             <StyledInput
               id="company_name"
               name="company_name"
@@ -113,7 +122,9 @@ export const AddClient = () => {
 
           <StyledInputConatiner>
             <StyledLabel htmlFor="email">Email</StyledLabel>
-            {formik.touched && <StyledErrorP>{formik.errors.email}</StyledErrorP>}
+            {formik.touched && (
+              <StyledErrorP>{formik.errors.email}</StyledErrorP>
+            )}
             <StyledInput
               id="email"
               name="email"
