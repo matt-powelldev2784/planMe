@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { setSingleClientId } from '@/redux/slices/clientsSlice'
 
 interface ClientItemProps {
+  id: string
   name: string
   company_name: string
   add1: string
@@ -9,11 +11,26 @@ interface ClientItemProps {
   post_code: string
 }
 
-export const ClientItem: React.FC<ClientItemProps> = ({ name, company_name, add1, add2, post_code }) => {
+export const ClientItem: React.FC<ClientItemProps> = ({
+  id,
+  name,
+  company_name,
+  add1,
+  add2,
+  post_code,
+}) => {
+  const displayClientDetailHandler = () => {
+    sessionStorage.setItem('singleClientId', id)
+    window.location.href = `/clients/singleclient`
+  }
+
   return (
     <StyledClientContainer>
       <StyledButtonFlexbox>
-        <StyledImg src="../plus.svg"></StyledImg>
+        <StyledImg
+          src="../plus.svg"
+          onClick={displayClientDetailHandler}
+        ></StyledImg>
       </StyledButtonFlexbox>
       <StyledClientFlexbox>
         <StyledPrimaryField>{name}</StyledPrimaryField>

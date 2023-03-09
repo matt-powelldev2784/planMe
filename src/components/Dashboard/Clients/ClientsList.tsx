@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import { useAppSelector } from '@/redux/store/reduxHooks'
-import { selectClientSlice } from '@/redux/slices/clientsSlice'
+import {
+  selectClientSlice,
+  setSingleClientId,
+} from '@/redux/slices/clientsSlice'
 import { ClientItem } from './ClientItem'
 import { PageMenu, NavBar } from '@/components'
 import { menuComponents } from './menuComponents'
@@ -13,6 +16,7 @@ export const ClientsList = () => {
     return (
       <ClientItem
         key={id}
+        id={id}
         name={name}
         company_name={company_name}
         add1={add1}
@@ -26,7 +30,6 @@ export const ClientsList = () => {
     <StyledDashboardDiv>
       <NavBar />
       <PageMenu title="Clients List" reactMenuComponents={menuComponents} />
-
       <StyledClientsFlexbox>{clientItems}</StyledClientsFlexbox>
     </StyledDashboardDiv>
   )
