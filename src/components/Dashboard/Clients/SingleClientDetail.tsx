@@ -15,6 +15,7 @@ export const SingleClientDetail = () => {
       return (
         <ClientItem
           key={id}
+          id={id}
           name={name}
           company_name={company_name}
           add1={add1}
